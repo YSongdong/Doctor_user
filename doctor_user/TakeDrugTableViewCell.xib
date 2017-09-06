@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="139" id="KGk-i7-Jjw" customClass="TakeDrugTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="373" height="139"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="373" height="139"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="正在服用的药品" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DF8-Zq-796">
+                        <rect key="frame" x="10" y="8" width="107.5" height="37"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" red="0.29803921570000003" green="0.65098039220000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eHz-qm-5iU">
+                        <rect key="frame" x="10" y="45" width="353" height="88.5"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请输入药品名称" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RJY-et-Fv4">
+                                <rect key="frame" x="14" y="16" width="104" height="17"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pId-gn-MF2">
+                                <rect key="frame" x="0.0" y="54.5" width="176.5" height="34"/>
+                                <connections>
+                                    <action selector="selectdTimeBtnAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="oiQ-bY-TWe"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="时间次数:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="am2-pg-Gq7">
+                                <rect key="frame" x="14" y="65" width="53" height="14.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="一日三次" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oqL-qC-0pL">
+                                <rect key="frame" x="93" y="64" width="57.5" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="healthe_bottom" translatesAutoresizingMaskIntoConstraints="NO" id="2Hv-yo-Jgx">
+                                <rect key="frame" x="155.5" y="65.5" width="12" height="12"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QDl-lu-GUp">
+                                <rect key="frame" x="176.5" y="54.5" width="176.5" height="34"/>
+                                <connections>
+                                    <action selector="drugDayBtnAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="SQl-lk-0Io"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请设置用药天数:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zQN-Q1-BTJ">
+                                <rect key="frame" x="176.5" y="65" width="89.5" height="14.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="z3M-PM-4Pd">
+                                <rect key="frame" x="266" y="64" width="62.5" height="17"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="天" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CKv-mq-Tux">
+                                <rect key="frame" x="328.5" y="64.5" width="14.5" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="z3M-PM-4Pd" firstAttribute="centerY" secondItem="zQN-Q1-BTJ" secondAttribute="centerY" id="1rB-ka-JwD"/>
+                            <constraint firstItem="zQN-Q1-BTJ" firstAttribute="leading" secondItem="QDl-lu-GUp" secondAttribute="leading" id="5Fa-bL-bXU"/>
+                            <constraint firstItem="RJY-et-Fv4" firstAttribute="top" secondItem="eHz-qm-5iU" secondAttribute="top" constant="16" id="9Od-5d-aCk"/>
+                            <constraint firstItem="2Hv-yo-Jgx" firstAttribute="centerX" secondItem="eHz-qm-5iU" secondAttribute="centerX" constant="-15" id="9l1-dN-Pph"/>
+                            <constraint firstItem="RJY-et-Fv4" firstAttribute="leading" secondItem="eHz-qm-5iU" secondAttribute="leading" constant="14" id="FeA-y2-ul4"/>
+                            <constraint firstAttribute="trailing" secondItem="QDl-lu-GUp" secondAttribute="trailing" id="Ntw-Gs-4w4"/>
+                            <constraint firstAttribute="bottom" secondItem="QDl-lu-GUp" secondAttribute="bottom" id="OIt-XY-WXf"/>
+                            <constraint firstItem="z3M-PM-4Pd" firstAttribute="leading" secondItem="zQN-Q1-BTJ" secondAttribute="trailing" id="TJD-lv-UJ9"/>
+                            <constraint firstItem="2Hv-yo-Jgx" firstAttribute="leading" secondItem="oqL-qC-0pL" secondAttribute="trailing" constant="5" id="VCQ-C2-wSb"/>
+                            <constraint firstItem="2Hv-yo-Jgx" firstAttribute="centerY" secondItem="pId-gn-MF2" secondAttribute="centerY" id="VcM-9W-MbS"/>
+                            <constraint firstAttribute="trailing" secondItem="CKv-mq-Tux" secondAttribute="trailing" constant="10" id="XCC-Yz-5qn"/>
+                            <constraint firstItem="zQN-Q1-BTJ" firstAttribute="centerY" secondItem="QDl-lu-GUp" secondAttribute="centerY" id="ZRI-8h-BJ2"/>
+                            <constraint firstItem="QDl-lu-GUp" firstAttribute="centerY" secondItem="pId-gn-MF2" secondAttribute="centerY" id="cEK-4r-szJ"/>
+                            <constraint firstItem="QDl-lu-GUp" firstAttribute="leading" secondItem="pId-gn-MF2" secondAttribute="trailing" id="dbo-fM-Ll5"/>
+                            <constraint firstItem="pId-gn-MF2" firstAttribute="leading" secondItem="eHz-qm-5iU" secondAttribute="leading" id="dcN-Ru-LLF"/>
+                            <constraint firstItem="am2-pg-Gq7" firstAttribute="leading" secondItem="RJY-et-Fv4" secondAttribute="leading" id="itC-rt-sxm"/>
+                            <constraint firstItem="oqL-qC-0pL" firstAttribute="centerY" secondItem="am2-pg-Gq7" secondAttribute="centerY" id="jwB-Fh-iuw"/>
+                            <constraint firstItem="CKv-mq-Tux" firstAttribute="centerY" secondItem="z3M-PM-4Pd" secondAttribute="centerY" id="lhQ-4n-qAj"/>
+                            <constraint firstItem="am2-pg-Gq7" firstAttribute="centerY" secondItem="pId-gn-MF2" secondAttribute="centerY" id="lqF-hj-AqP"/>
+                            <constraint firstItem="QDl-lu-GUp" firstAttribute="width" secondItem="pId-gn-MF2" secondAttribute="width" id="oT9-7O-5XF"/>
+                            <constraint firstItem="oqL-qC-0pL" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="am2-pg-Gq7" secondAttribute="trailing" constant="10" id="rJF-zt-ZCq"/>
+                            <constraint firstItem="QDl-lu-GUp" firstAttribute="height" secondItem="pId-gn-MF2" secondAttribute="height" id="vlR-t6-bbl"/>
+                            <constraint firstItem="CKv-mq-Tux" firstAttribute="leading" secondItem="z3M-PM-4Pd" secondAttribute="trailing" id="wkD-4k-48j"/>
+                            <constraint firstAttribute="bottom" secondItem="pId-gn-MF2" secondAttribute="bottom" id="yvJ-jD-ESU"/>
+                        </constraints>
+                    </view>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eiu-l8-9zX">
+                        <rect key="frame" x="332" y="11" width="31" height="30"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <state key="normal" title="编辑">
+                            <color key="titleColor" red="0.29803921570000003" green="0.65098039220000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </state>
+                        <connections>
+                            <action selector="EditDeleteBtnAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="ccD-iE-5xf"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Brl-4k-T1o">
+                        <rect key="frame" x="291" y="11" width="31" height="30"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <state key="normal" title="保存">
+                            <color key="titleColor" red="0.29803921570000003" green="0.65098039220000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </state>
+                        <connections>
+                            <action selector="saveBtnAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="MnA-QA-49e"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="topMargin" secondItem="DF8-Zq-796" secondAttribute="top" id="2Aj-fC-G6R"/>
+                    <constraint firstItem="eHz-qm-5iU" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="417-lq-hFu"/>
+                    <constraint firstAttribute="trailing" secondItem="eHz-qm-5iU" secondAttribute="trailing" constant="10" id="F4D-pJ-sbE"/>
+                    <constraint firstItem="DF8-Zq-796" firstAttribute="leading" secondItem="eHz-qm-5iU" secondAttribute="leading" id="FBe-6P-QM9"/>
+                    <constraint firstItem="eHz-qm-5iU" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="45" id="KMx-eL-azB"/>
+                    <constraint firstAttribute="trailing" secondItem="Eiu-l8-9zX" secondAttribute="trailing" constant="10" id="RBd-IS-PVO"/>
+                    <constraint firstItem="Eiu-l8-9zX" firstAttribute="centerY" secondItem="DF8-Zq-796" secondAttribute="centerY" id="gkR-AP-D6i"/>
+                    <constraint firstItem="eHz-qm-5iU" firstAttribute="top" secondItem="DF8-Zq-796" secondAttribute="bottom" id="pkq-8j-b5g"/>
+                    <constraint firstItem="Brl-4k-T1o" firstAttribute="centerY" secondItem="Eiu-l8-9zX" secondAttribute="centerY" id="vwo-0O-YnU"/>
+                    <constraint firstItem="Eiu-l8-9zX" firstAttribute="leading" secondItem="Brl-4k-T1o" secondAttribute="trailing" constant="10" id="yNd-BF-0oB"/>
+                    <constraint firstAttribute="bottom" secondItem="eHz-qm-5iU" secondAttribute="bottom" constant="5" id="yyC-5L-aTc"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="drugBackgrounView" destination="eHz-qm-5iU" id="Bhp-w6-f33"/>
+                <outlet property="drugDayTF" destination="z3M-PM-4Pd" id="5sr-Ps-m0F"/>
+                <outlet property="drugEditBtn" destination="Eiu-l8-9zX" id="VnB-Hc-qii"/>
+                <outlet property="drugNameTF" destination="RJY-et-Fv4" id="OEm-LQ-ac0"/>
+                <outlet property="saveBtn" destination="Brl-4k-T1o" id="LN9-81-92B"/>
+                <outlet property="selectdTimeBtn" destination="pId-gn-MF2" id="XFZ-3L-TwV"/>
+                <outlet property="showTimeCountLabel" destination="am2-pg-Gq7" id="3x1-co-Qhr"/>
+                <outlet property="timeCountLabel" destination="oqL-qC-0pL" id="fWA-qN-sxr"/>
+            </connections>
+            <point key="canvasLocation" x="51.5" y="99.5"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="healthe_bottom" width="12" height="12"/>
+    </resources>
+</document>

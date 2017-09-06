@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="TakeDrugFootView">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="174"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UlB-4e-Qct">
+                    <rect key="frame" x="10" y="0.0" width="355" height="34"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="34" id="etB-yD-Efk"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <state key="normal" title="  新增药品" image="healthy_add">
+                        <color key="titleColor" red="0.29803921570000003" green="0.65098039220000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="addDrugBtnAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="Nt9-Pu-Z7s"/>
+                    </connections>
+                </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L87-I4-tar">
+                    <rect key="frame" x="10" y="38" width="355" height="1"/>
+                    <color key="backgroundColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="0.5" id="P7B-86-Lae"/>
+                    </constraints>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="医生嘱咐" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1OA-XK-m9P">
+                    <rect key="frame" x="10" y="47" width="61.5" height="18"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <color key="textColor" red="0.29803921570000003" green="0.65098039220000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0SK-O3-DLW">
+                    <rect key="frame" x="10" y="75" width="355" height="89"/>
+                    <subviews>
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="y7R-gz-PEW">
+                            <rect key="frame" x="0.0" y="0.0" width="355" height="89"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                        </textView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请在此输入..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7TN-bO-wlp">
+                            <rect key="frame" x="10" y="5" width="78" height="16"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="y7R-gz-PEW" secondAttribute="bottom" id="3cp-1a-ncY"/>
+                        <constraint firstAttribute="trailing" secondItem="y7R-gz-PEW" secondAttribute="trailing" id="8So-yh-pDI"/>
+                        <constraint firstItem="y7R-gz-PEW" firstAttribute="leading" secondItem="0SK-O3-DLW" secondAttribute="leading" id="9XQ-XS-ZRY"/>
+                        <constraint firstItem="7TN-bO-wlp" firstAttribute="top" secondItem="0SK-O3-DLW" secondAttribute="top" constant="5" id="CDj-u4-6Qf"/>
+                        <constraint firstItem="y7R-gz-PEW" firstAttribute="top" secondItem="0SK-O3-DLW" secondAttribute="top" id="M5i-WQ-DNu"/>
+                        <constraint firstItem="7TN-bO-wlp" firstAttribute="leading" secondItem="0SK-O3-DLW" secondAttribute="leading" constant="10" id="auQ-Vz-YaZ"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GSx-77-kdA">
+                    <rect key="frame" x="334" y="41" width="31" height="30"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <state key="normal" title="编辑">
+                        <color key="titleColor" red="0.29803921570000003" green="0.65098039220000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="editBtnAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="e8H-5B-rNt"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="L87-I4-tar" firstAttribute="bottom" secondItem="UlB-4e-Qct" secondAttribute="bottom" constant="5" id="0bA-DK-GbK"/>
+                <constraint firstItem="GSx-77-kdA" firstAttribute="trailing" secondItem="UlB-4e-Qct" secondAttribute="trailing" id="4SJ-ub-t05"/>
+                <constraint firstItem="0SK-O3-DLW" firstAttribute="leading" secondItem="UlB-4e-Qct" secondAttribute="leading" id="8IO-ZY-y84"/>
+                <constraint firstItem="1OA-XK-m9P" firstAttribute="leading" secondItem="L87-I4-tar" secondAttribute="leading" id="NPI-Ko-J5U"/>
+                <constraint firstItem="UlB-4e-Qct" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="ON6-Rr-guO"/>
+                <constraint firstItem="0SK-O3-DLW" firstAttribute="trailing" secondItem="UlB-4e-Qct" secondAttribute="trailing" id="PT9-vM-YpF"/>
+                <constraint firstItem="0SK-O3-DLW" firstAttribute="top" secondItem="1OA-XK-m9P" secondAttribute="bottom" constant="10" id="QL3-Eb-iQZ"/>
+                <constraint firstAttribute="trailing" secondItem="UlB-4e-Qct" secondAttribute="trailing" constant="10" id="eow-tr-RSD"/>
+                <constraint firstItem="GSx-77-kdA" firstAttribute="centerY" secondItem="1OA-XK-m9P" secondAttribute="centerY" id="kij-Ux-GpP"/>
+                <constraint firstItem="UlB-4e-Qct" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="lzW-Xc-ePY"/>
+                <constraint firstItem="1OA-XK-m9P" firstAttribute="top" secondItem="L87-I4-tar" secondAttribute="bottom" constant="8" id="moi-TK-ygq"/>
+                <constraint firstItem="L87-I4-tar" firstAttribute="width" secondItem="UlB-4e-Qct" secondAttribute="width" id="psk-Lf-dtj"/>
+                <constraint firstItem="L87-I4-tar" firstAttribute="leading" secondItem="UlB-4e-Qct" secondAttribute="leading" id="wjA-mu-BPU"/>
+                <constraint firstAttribute="bottom" secondItem="0SK-O3-DLW" secondAttribute="bottom" constant="10" id="wkt-WA-cj5"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="addDrugBtn" destination="UlB-4e-Qct" id="hdN-oV-j9O"/>
+                <outlet property="backGrouView" destination="0SK-O3-DLW" id="qcG-4c-492"/>
+                <outlet property="editBtn" destination="GSx-77-kdA" id="5rm-kH-Jq9"/>
+                <outlet property="footTextView" destination="y7R-gz-PEW" id="6P8-UT-G2G"/>
+                <outlet property="showPlaceLabel" destination="7TN-bO-wlp" id="YAX-n8-WTh"/>
+            </connections>
+            <point key="canvasLocation" x="10.5" y="285"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="healthy_add" width="12" height="12"/>
+    </resources>
+</document>

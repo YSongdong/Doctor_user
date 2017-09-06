@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="247" id="KGk-i7-Jjw" customClass="SDStateFormExplairTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="247"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="247"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MiD-iH-gaZ">
+                        <rect key="frame" x="10" y="27" width="300" height="189.5"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="自购买高端商务私人医生服务卡起一年内，乙方将为甲方免费提供常规全面体检。此卡包含常规体检次数2次，体检项目范围为常规体检" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pQl-Cb-Nq2">
+                                <rect key="frame" x="10" y="25" width="280" height="67"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="pQl-Cb-Nq2" firstAttribute="leading" secondItem="MiD-iH-gaZ" secondAttribute="leading" constant="10" id="c6n-F3-PfB"/>
+                            <constraint firstAttribute="trailing" secondItem="pQl-Cb-Nq2" secondAttribute="trailing" constant="10" id="cyM-xc-D3l"/>
+                        </constraints>
+                    </view>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QXf-mx-Bu0">
+                        <rect key="frame" x="85" y="12" width="150" height="30"/>
+                        <color key="backgroundColor" red="0.26169544459999999" green="0.58283364770000001" blue="0.90090143680000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="30" id="vYg-dK-Yrg"/>
+                            <constraint firstAttribute="width" constant="150" id="xsr-Hg-b4G"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <state key="normal" title="服务规则说明"/>
+                    </button>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="13v-dt-uxV">
+                        <rect key="frame" x="0.0" y="236.5" width="320" height="10"/>
+                        <color key="backgroundColor" red="0.92812776565551758" green="0.93224698305130005" blue="0.93509441614151001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="10" id="1kc-zg-ta5"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="pQl-Cb-Nq2" firstAttribute="top" secondItem="QXf-mx-Bu0" secondAttribute="bottom" constant="10" id="73f-xC-Qp2"/>
+                    <constraint firstItem="QXf-mx-Bu0" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="8SU-Aq-wUg"/>
+                    <constraint firstItem="QXf-mx-Bu0" firstAttribute="top" secondItem="MiD-iH-gaZ" secondAttribute="top" constant="-15" id="Ed2-Ex-6y1"/>
+                    <constraint firstAttribute="trailing" secondItem="13v-dt-uxV" secondAttribute="trailing" id="If9-PA-e1W"/>
+                    <constraint firstItem="QXf-mx-Bu0" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="bqk-t2-XbW"/>
+                    <constraint firstItem="13v-dt-uxV" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="ffV-wk-rNB"/>
+                    <constraint firstAttribute="bottom" secondItem="13v-dt-uxV" secondAttribute="bottom" id="jkb-yH-VI6"/>
+                    <constraint firstItem="13v-dt-uxV" firstAttribute="top" secondItem="MiD-iH-gaZ" secondAttribute="bottom" constant="20" id="n6B-qR-LcH"/>
+                    <constraint firstItem="MiD-iH-gaZ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="o6a-EH-q2K"/>
+                    <constraint firstAttribute="trailing" secondItem="MiD-iH-gaZ" secondAttribute="trailing" constant="10" id="trM-4d-2EB"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="explairBackgrounView" destination="MiD-iH-gaZ" id="U2z-ap-J6k"/>
+                <outlet property="explairBtn" destination="QXf-mx-Bu0" id="fHa-mm-Zov"/>
+                <outlet property="explairLabel" destination="pQl-Cb-Nq2" id="awB-dX-EPd"/>
+            </connections>
+            <point key="canvasLocation" x="21" y="68.5"/>
+        </tableViewCell>
+    </objects>
+</document>

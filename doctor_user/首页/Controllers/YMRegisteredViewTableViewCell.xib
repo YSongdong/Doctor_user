@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="YMRegisteredViewTableViewCell">
+            <connections>
+                <outlet property="additionalInformationLabel" destination="3dC-za-KPc" id="iGg-SS-sJV"/>
+                <outlet property="daiguahaoFeiyong" destination="z2Y-g8-sSI" id="9Vk-JY-wnU"/>
+                <outlet property="platformLabel" destination="pyx-yb-b7x" id="1yK-H5-gab"/>
+                <outlet property="view" destination="tBW-RN-kFV" id="UED-Jw-xlp"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="tBW-RN-kFV">
+            <rect key="frame" x="0.0" y="0.0" width="418" height="71"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="平台代挂号：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pyx-yb-b7x">
+                    <rect key="frame" x="10" y="16.5" width="92" height="18"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="如使用医保卡，请自行到院挂科室普通号" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3dC-za-KPc">
+                    <rect key="frame" x="10" y="36.5" width="202.5" height="14"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                    <color key="textColor" red="0.70588235290000001" green="0.70588235290000001" blue="0.70588235290000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z2Y-g8-sSI">
+                    <rect key="frame" x="107" y="16.5" width="301" height="0.0"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="pyx-yb-b7x" firstAttribute="centerY" secondItem="tBW-RN-kFV" secondAttribute="centerY" constant="-10" id="2hZ-AR-FeE"/>
+                <constraint firstItem="3dC-za-KPc" firstAttribute="top" secondItem="pyx-yb-b7x" secondAttribute="bottom" constant="2.5" id="2i8-aZ-MQU"/>
+                <constraint firstAttribute="trailing" secondItem="z2Y-g8-sSI" secondAttribute="trailing" constant="10" id="31F-CT-yxW"/>
+                <constraint firstItem="3dC-za-KPc" firstAttribute="leading" secondItem="pyx-yb-b7x" secondAttribute="leading" id="Crj-xi-4Ai"/>
+                <constraint firstItem="pyx-yb-b7x" firstAttribute="leading" secondItem="tBW-RN-kFV" secondAttribute="leading" constant="10" id="Ilc-We-HgV"/>
+                <constraint firstItem="z2Y-g8-sSI" firstAttribute="leading" secondItem="pyx-yb-b7x" secondAttribute="trailing" constant="5" id="bZ9-Rm-76y"/>
+                <constraint firstItem="z2Y-g8-sSI" firstAttribute="top" secondItem="pyx-yb-b7x" secondAttribute="top" id="xmH-sJ-7O4"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="-240" y="383"/>
+        </view>
+    </objects>
+</document>

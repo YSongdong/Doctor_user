@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="167" id="KGk-i7-Jjw" customClass="SDCircumstFilesTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="353" height="167"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="353" height="167"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GGl-qB-GKB">
+                        <rect key="frame" x="0.0" y="83" width="353" height="1"/>
+                        <color key="backgroundColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="0.5" id="4hb-67-jMw"/>
+                        </constraints>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="抽烟情况" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CDm-gb-P4P">
+                        <rect key="frame" x="10" y="10" width="61.5" height="18"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="喝酒情况" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x8x-ni-k7T">
+                        <rect key="frame" x="10" y="94" width="61.5" height="18"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="GGl-qB-GKB" secondAttribute="trailing" id="5xF-eh-GbD"/>
+                    <constraint firstItem="GGl-qB-GKB" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="E6s-d0-5fx"/>
+                    <constraint firstItem="x8x-ni-k7T" firstAttribute="leading" secondItem="CDm-gb-P4P" secondAttribute="leading" id="faS-Cr-j7k"/>
+                    <constraint firstItem="CDm-gb-P4P" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="h0N-Ze-9JW"/>
+                    <constraint firstItem="x8x-ni-k7T" firstAttribute="top" secondItem="GGl-qB-GKB" secondAttribute="bottom" constant="10" id="hIc-KF-Dbx"/>
+                    <constraint firstItem="GGl-qB-GKB" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="lGu-a7-CAl"/>
+                    <constraint firstItem="CDm-gb-P4P" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="mXh-an-Qtj"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="drinkWineLabel" destination="x8x-ni-k7T" id="jzx-Pc-vkD"/>
+                <outlet property="somkeCircumLabel" destination="CDm-gb-P4P" id="joW-qm-hgV"/>
+            </connections>
+            <point key="canvasLocation" x="48.5" y="116.5"/>
+        </tableViewCell>
+    </objects>
+</document>

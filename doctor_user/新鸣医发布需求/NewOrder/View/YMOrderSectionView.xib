@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="YMOrderSectionView">
+            <connections>
+                <outlet property="View" destination="iN0-l3-epB" id="mFL-5x-hY4"/>
+                <outlet property="rectangleImageView" destination="Xl1-XH-Ny8" id="ah5-J2-WrZ"/>
+                <outlet property="titleInfoLabel" destination="2lS-rp-hSJ" id="kCz-hy-e9F"/>
+                <outlet property="titleNumberLabel" destination="8vA-Ow-Qpg" id="nnY-IW-2sC"/>
+                <outlet property="titleStatusLabel" destination="7xa-YY-FL9" id="rQB-t4-2C4"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="62"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="01" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8vA-Ow-Qpg">
+                    <rect key="frame" x="10" y="0.0" width="25" height="62"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="25" id="bmf-3w-ge9"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.24313725490196078" green="0.5725490196078431" blue="0.9882352941176471" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dingdian_status_icon" translatesAutoresizingMaskIntoConstraints="NO" id="Xl1-XH-Ny8">
+                    <rect key="frame" x="37" y="25" width="12" height="12"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="12" id="A5H-VG-XTS"/>
+                        <constraint firstAttribute="height" constant="12" id="omJ-FW-5uK"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7xa-YY-FL9">
+                    <rect key="frame" x="275" y="0.0" width="40" height="62"/>
+                    <constraints>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="40" id="CNE-3n-h2A"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="等待医生确认订单" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2lS-rp-hSJ">
+                    <rect key="frame" x="54" y="22" width="216" height="18"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="7xa-YY-FL9" firstAttribute="leading" secondItem="2lS-rp-hSJ" secondAttribute="trailing" constant="5" id="3PI-RD-BFE"/>
+                <constraint firstAttribute="bottom" secondItem="7xa-YY-FL9" secondAttribute="bottom" id="8ri-Eu-7Qq"/>
+                <constraint firstItem="2lS-rp-hSJ" firstAttribute="leading" secondItem="Xl1-XH-Ny8" secondAttribute="trailing" constant="5" id="VgC-2x-5MF"/>
+                <constraint firstItem="8vA-Ow-Qpg" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="YuX-M0-e9E"/>
+                <constraint firstAttribute="trailing" secondItem="7xa-YY-FL9" secondAttribute="trailing" constant="5" id="Yym-ny-Ebq"/>
+                <constraint firstItem="8vA-Ow-Qpg" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="c1U-bG-Z4R"/>
+                <constraint firstAttribute="bottom" secondItem="8vA-Ow-Qpg" secondAttribute="bottom" id="ds7-qn-EcC"/>
+                <constraint firstItem="7xa-YY-FL9" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="i9c-kn-2pk"/>
+                <constraint firstItem="2lS-rp-hSJ" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="m5g-ie-dL9"/>
+                <constraint firstItem="Xl1-XH-Ny8" firstAttribute="leading" secondItem="8vA-Ow-Qpg" secondAttribute="trailing" constant="2" id="rqV-od-mud"/>
+                <constraint firstItem="Xl1-XH-Ny8" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="sEt-lu-qDQ"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="-106" y="363"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="dingdian_status_icon" width="12" height="12"/>
+    </resources>
+</document>

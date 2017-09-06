@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1212" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="55" id="KGk-i7-Jjw" customClass="YMMoneyTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="366" height="55"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="366" height="54"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="就诊时间：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="krl-DJ-i4a">
+                        <rect key="frame" x="15" y="15" width="71.5" height="24.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cQa-xR-3wo">
+                        <rect key="frame" x="86.5" y="12.5" width="105" height="29"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <state key="normal" title="2016年10月21日">
+                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
+                        <connections>
+                            <action selector="beginBtnClick:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="jm6-bz-tpI"/>
+                        </connections>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kjd-xU-nYV">
+                        <rect key="frame" x="191.5" y="17" width="8" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P0A-vH-oiq">
+                        <rect key="frame" x="199.5" y="12.5" width="114" height="30"/>
+                        <state key="normal" title="2016年10月25日">
+                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
+                        <connections>
+                            <action selector="endBtnClick:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="gAR-mB-gxG"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Kjd-xU-nYV" firstAttribute="leading" secondItem="cQa-xR-3wo" secondAttribute="trailing" id="B1w-t0-f5v"/>
+                    <constraint firstItem="krl-DJ-i4a" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="Cdb-yy-8fx"/>
+                    <constraint firstItem="krl-DJ-i4a" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="K7m-9V-0RU"/>
+                    <constraint firstAttribute="bottom" secondItem="krl-DJ-i4a" secondAttribute="bottom" constant="15" id="Mep-Hs-UQl"/>
+                    <constraint firstItem="Kjd-xU-nYV" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="XQA-wn-j7z"/>
+                    <constraint firstItem="P0A-vH-oiq" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="gnO-9J-eTH"/>
+                    <constraint firstItem="P0A-vH-oiq" firstAttribute="leading" secondItem="Kjd-xU-nYV" secondAttribute="trailing" id="ouM-oe-fVK"/>
+                    <constraint firstItem="cQa-xR-3wo" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="pd4-Tj-2S4"/>
+                    <constraint firstItem="cQa-xR-3wo" firstAttribute="leading" secondItem="krl-DJ-i4a" secondAttribute="trailing" id="t8L-5U-ROG"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="beginBtn" destination="cQa-xR-3wo" id="hTf-tz-avC"/>
+                <outlet property="endBtn" destination="P0A-vH-oiq" id="ZOJ-ve-oN6"/>
+                <outlet property="endLeft" destination="ouM-oe-fVK" id="Qn4-ky-PeX"/>
+                <outlet property="lineBtn" destination="Kjd-xU-nYV" id="xdq-Vp-6PX"/>
+            </connections>
+            <point key="canvasLocation" x="-14" y="13.5"/>
+        </tableViewCell>
+    </objects>
+</document>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1212" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="YMConfirmOrderTableViewCell">
+            <connections>
+                <outlet property="contractButton" destination="bna-hH-wx6" id="wgh-XP-wqG"/>
+                <outlet property="doctorInforView" destination="ugo-3Z-N4L" id="JSh-t3-Bkm"/>
+                <outlet property="tipInfoLabel" destination="lzC-Hm-sz6" id="o0l-ov-zQ5"/>
+                <outlet property="view" destination="iN0-l3-epB" id="QAf-wV-9Ec"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="433" height="139"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ugo-3Z-N4L" customClass="YMMyAttentionTableViewCell">
+                    <rect key="frame" x="0.0" y="0.0" width="433" height="99"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sa6-5S-R3V">
+                    <rect key="frame" x="0.0" y="99" width="433" height="40"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lyZ-K6-Ezj">
+                            <rect key="frame" x="10" y="0.0" width="423" height="1"/>
+                            <color key="backgroundColor" red="0.89803921568627454" green="0.89803921568627454" blue="0.89803921568627454" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="1" id="ZCj-uu-GNJ"/>
+                            </constraints>
+                        </view>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="医生已接受了您的预约，请签订合同" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lzC-Hm-sz6">
+                            <rect key="frame" x="10" y="12.5" width="212.5" height="16"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <color key="textColor" red="0.31372549020000001" green="0.31372549020000001" blue="0.31372549020000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bna-hH-wx6">
+                            <rect key="frame" x="358" y="9" width="70" height="22"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="22" id="DgF-Gb-7T1"/>
+                                <constraint firstAttribute="width" constant="70" id="wCt-ra-dxq"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                            <state key="normal" title="签订合同">
+                                <color key="titleColor" red="0.93725490196078431" green="0.51764705882352946" blue="0.11764705882352941" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="contractClick:" destination="-1" eventType="touchUpInside" id="9vs-lh-voi"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="bna-hH-wx6" firstAttribute="centerY" secondItem="sa6-5S-R3V" secondAttribute="centerY" id="0wj-jr-dm5"/>
+                        <constraint firstAttribute="height" constant="40" id="4rJ-kb-9bP"/>
+                        <constraint firstItem="lyZ-K6-Ezj" firstAttribute="top" secondItem="sa6-5S-R3V" secondAttribute="top" id="LCj-H6-lqC"/>
+                        <constraint firstAttribute="trailing" secondItem="lyZ-K6-Ezj" secondAttribute="trailing" id="OVA-0Z-C3i"/>
+                        <constraint firstItem="lzC-Hm-sz6" firstAttribute="leading" secondItem="sa6-5S-R3V" secondAttribute="leading" constant="10" id="Z5W-th-RXP"/>
+                        <constraint firstAttribute="trailing" secondItem="bna-hH-wx6" secondAttribute="trailing" constant="5" id="cvW-tA-vnf"/>
+                        <constraint firstItem="lzC-Hm-sz6" firstAttribute="centerY" secondItem="sa6-5S-R3V" secondAttribute="centerY" id="dzt-tR-9gv"/>
+                        <constraint firstItem="lyZ-K6-Ezj" firstAttribute="leading" secondItem="sa6-5S-R3V" secondAttribute="leading" constant="10" id="g6l-Eb-RC4"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="sa6-5S-R3V" secondAttribute="bottom" id="8BW-OH-S7k"/>
+                <constraint firstAttribute="trailing" secondItem="sa6-5S-R3V" secondAttribute="trailing" id="XiM-Gj-ZwZ"/>
+                <constraint firstItem="sa6-5S-R3V" firstAttribute="top" secondItem="ugo-3Z-N4L" secondAttribute="bottom" id="gfs-lv-ER2"/>
+                <constraint firstItem="sa6-5S-R3V" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="j76-bB-9CT"/>
+                <constraint firstAttribute="trailing" secondItem="ugo-3Z-N4L" secondAttribute="trailing" id="rA7-2p-qnL"/>
+                <constraint firstItem="ugo-3Z-N4L" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="u3m-VJ-EFT"/>
+                <constraint firstItem="ugo-3Z-N4L" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="xlJ-Xp-LMy"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="-123.5" y="-247.5"/>
+        </view>
+    </objects>
+</document>
