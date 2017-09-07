@@ -44,6 +44,27 @@
     
     
 }
+
+-(void)setModel:(SDFilesMessageModel *)model{
+
+    _model = model;
+    //姓名
+    self.userNameLab.text = model.member_name;
+    //生日
+    self.userBirthdayLab.text = model.birthday;
+    //血型
+    self.userBloodTypeLab.text = model.blood;
+    //家庭地址
+    self.userAddressLab.text = model.address;
+    //疾病史
+    self.userDiseaseHistorLab.text = model.diseases;
+    //过敏史
+    self.userAnapHistoryLab.text = model.allergic;
+    
+}
+
+
+
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 

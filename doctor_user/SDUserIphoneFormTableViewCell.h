@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "SDFilesMessageModel.h"
 @interface SDUserIphoneFormTableViewCell : UITableViewCell
-
+@property(nonatomic,strong) SDFilesMessageModel *model;
 @end

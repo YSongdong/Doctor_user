@@ -23,6 +23,8 @@
 #import "YMHelpCenterViewController.h"
 #import "ShareView.h"
 #import "YMMyAttentionViewController.h"
+#import "SDHosporViewController.h"
+
 
 #import "YMMyHeaderTableViewCell.h"
 
@@ -116,6 +118,7 @@ static NSString *const saveUsrInfo = @"saveUsrInfo";
     
     __weak typeof(self) weakSelf = self;
     [[KRMainNetTool sharedKRMainNetTool] sendRequstWith:@"act=users_page&op=index" params:@{@"member_id":[YMUserInfo sharedYMUserInfo].member_id} withModel:nil waitView:temp complateHandle:^(id showdata, NSString *error) {
+        //NSLog(@"showdata------%@",showdata);
         if (showdata == nil) {
             return ;
         }
@@ -211,11 +214,17 @@ static NSString *const saveUsrInfo = @"saveUsrInfo";
             case 0:{
                 NSLog(@"我的私人医生");
                 
+                //判断跳宣传页
+                if ([self.model.report_type isEqualToString:@"1"]) {
+                    SDMinePrivateDoctorViewController *privateDoctVC = [[SDMinePrivateDoctorViewController alloc]init];
+                    [self.navigationController pushViewController:privateDoctVC animated:YES];
+                }else{
+                    SDHosporViewController *sdHosporVC = [[SDHosporViewController alloc]init];
+                    sdHosporVC.title = @"私人医生";
+                    sdHosporVC.url = @"http://weixin.ys9958.com/index.php/api/Promote/index";
+                    [self.navigationController pushViewController:sdHosporVC animated:YES];
+                }
                 
-                SDMinePrivateDoctorViewController *privateDoctVC = [[SDMinePrivateDoctorViewController alloc]init];
-                [self.navigationController pushViewController:privateDoctVC animated:YES];
-
-               
             }
                 break;
             case 1:{

@@ -42,6 +42,26 @@
     self.iphoneFormBackgrouView.layer.borderColor = [UIColor NaviBackgrounColor].CGColor;
 
 }
+-(void)setModel:(SDFilesMessageModel *)model{
+
+    _model= model;
+    //紧急联系人
+    self.emergencyContactPeopleLab.text = model.emergency_name;
+    //紧急联系人电话
+    self.contactPeopleNumberLab.text = model.emergency_phone;
+    //私人医生
+    self.privateDoctorNameLab.text = model.private_name;
+    //私人医生电话
+    self.doctorIphoneLab.text = model.private_phone;
+    //健康管理师
+    self.healthyManagerNameLab.text = model.manager_name;
+    //健康管理师电话
+    self.managerIphoneLab.text = model.manager_phone;
+    //其他说明
+    self.otherLabel.text = model.desc;
+    
+
+}
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];

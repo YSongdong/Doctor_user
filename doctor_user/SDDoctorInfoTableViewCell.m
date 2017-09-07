@@ -10,22 +10,30 @@
 
 @interface SDDoctorInfoTableViewCell ()
 
+@property (weak, nonatomic) IBOutlet UIImageView *userHeaderImageView; //头像
+@property (weak, nonatomic) IBOutlet UILabel *userNameLab; //姓名
+@property (weak, nonatomic) IBOutlet UILabel *userAptitudeLab; //职称
+
+@property (weak, nonatomic) IBOutlet UILabel *userOccupationLab; //医生所在医院
+@property (weak, nonatomic) IBOutlet UILabel *userKSLab; //科室
+
 @property (weak, nonatomic) IBOutlet UIButton *selectDetailBtn; //查看详情按钮
 - (IBAction)selectdDetailBtnAction:(UIButton *)sender;
 
 @property (weak, nonatomic) IBOutlet UILabel *goodDescriptionLabel; //个人介绍
+@property (weak, nonatomic) IBOutlet UILabel *userPersonalLab;
 
 @end
-
-
-
 
 
 @implementation SDDoctorInfoTableViewCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-   
+    self.userHeaderImageView.layer.cornerRadius =CGRectGetHeight(self.userHeaderImageView.frame)/2;
+    self.userHeaderImageView.layer.masksToBounds = YES;
+    self.userHeaderImageView.layer.borderWidth = 1;
+    self.userHeaderImageView.layer.borderColor = [UIColor whiteColor].CGColor;
     
 }
 
@@ -44,6 +52,27 @@
         [_selectDetailBtn setImage:[UIImage imageNamed:@"dropdown_icon"] forState:UIControlStateNormal];
     }
 }
+
+-(void)setModel:(SDDoctorConsultModel *)model{
+
+    _model = model;
+    
+    //头像
+    [self.userHeaderImageView sd_setImageWithURL:[NSURL URLWithString:model.member_avatar] placeholderImage:[UIImage imageNamed:@"暂无头像_03"]];
+    //姓名
+    self.userNameLab.text = model.member_names;
+    ///职称
+    self.userAptitudeLab.text = model.member_aptitude;
+    //所在医院
+    self.userOccupationLab.text = model.member_occupation;
+    //科室
+    self.userKSLab.text = model.member_ks;
+    
+    //个人简介
+    self.userPersonalLab.text = model.member_personal;
+
+}
+
 
 +(CGFloat)DetailsViewHeight:(NSString *)text detailsClick:(BOOL)detailsClick{
     

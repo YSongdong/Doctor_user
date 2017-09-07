@@ -51,6 +51,7 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="greenChannelBackgrouView" destination="SYN-iC-eCE" id="Kaa-U3-GGa"/>
+                <outlet property="showLab" destination="uAp-Wr-H2j" id="rcB-sm-gQt"/>
                 <outlet property="timeLabel" destination="6Db-X9-cf2" id="Cpz-n3-zMV"/>
             </connections>
             <point key="canvasLocation" x="-7" y="11"/>

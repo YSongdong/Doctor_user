@@ -29,6 +29,13 @@
     self.title = @"档案信息卡";
     [self initTableView];
 }
+-(void)viewWillAppear:(BOOL)animated{
+
+    [super viewWillAppear:animated];
+    [self reqeuestLoadData];
+
+}
+
 -(void)initTableView{
     
     UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 35)];
@@ -75,9 +82,13 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.row == 0) {
         SDUserFilesInfoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:SDUSERFILESINFOTABLEVIEW_CELL forIndexPath:indexPath];
+        cell.model = self.model;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }else{
     SDUserIphoneFormTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:SDUSERINPHONEFORMTABLEVIEW_CELL forIndexPath:indexPath];
+        cell.model = self.model;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }
     
@@ -114,7 +125,10 @@
             if ([showdata isKindOfClass:[NSDictionary class]] || [showdata isKindOfClass:[NSMutableDictionary class]]) {
                   weakSelf.model = [SDFilesMessageModel modelWithDictionary:showdata];
             }
-             [weakSelf.filesTableView reloadData];
+            
+            [weakSelf.filesTableView reloadData];
+            weakSelf.filesNumberLab.text = weakSelf.model.p_sn;
+            
         }else{
             [weakSelf.view showErrorWithTitle:error autoCloseTime:2];
         }

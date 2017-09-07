@@ -16,6 +16,7 @@
 @property(nonatomic,copy) NSString *address;  //用户地址
 @property(nonatomic,copy) NSString *member_mobile;  //用户电话
 @property(nonatomic,copy) NSString *endDate;   //到期日期
+@property(nonatomic,copy) NSString *doctor_id;   //医生id
 @property(nonatomic,copy) NSString *member_names; //医生名字
 @property(nonatomic,copy) NSString *member_mobiles; //医生电话
 @property(nonatomic,copy) NSString *physical_examination;  //全名健康体检总数

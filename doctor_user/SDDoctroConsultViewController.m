@@ -8,6 +8,11 @@
 
 #import "SDDoctroConsultViewController.h"
 
+
+#import "TalkingViewController.h"
+
+#import "SDDoctorConsultModel.h"
+
 #import "SDDoctorInfoTableViewCell.h"
 #import "SDDoctorHonourTableViewCell.h"
 #import "SDHonourOneTableViewCell.h"
@@ -18,7 +23,7 @@
 
 @property(nonatomic,strong) UITableView *doctorTableView;
 @property(nonatomic,assign)BOOL detailsClick;// 点击：Yes 没点击：NO
-
+@property(nonatomic,strong) SDDoctorConsultModel *model;
 @end
 
 @implementation SDDoctroConsultViewController
@@ -29,6 +34,12 @@
     [self initTableView];
     [self initGreenBottomView];
 }
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [self requestLoadData];
+}
+
+
 -(void)initTableView{
     
     self.doctorTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-64-50) ];
@@ -94,7 +105,7 @@
     if (section == 0) {
        return 1;
     }else{
-       return 5;
+       return self.model.honor.count;
     }
    
 }
@@ -103,21 +114,22 @@
         SDDoctorInfoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:SDDOCTORINFOTABLEVIEW_CELL forIndexPath:indexPath];
         cell.delegate = self;
         cell.clcickEvent = _detailsClick;
+        cell.model =  self.model;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }else{
-        if (indexPath.row ==4) {
-            
-            SDDoctorHonourTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:SDDOCTORHONOURTABLEVIEW_CELL forIndexPath:indexPath];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            return cell;
-        }else{
-            
+//        if (indexPath.row ==4) {
+//            
+//            SDDoctorHonourTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:SDDOCTORHONOURTABLEVIEW_CELL forIndexPath:indexPath];
+//            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//            return cell;
+//        }else{
+        
             SDHonourOneTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:SDHONOURONETABLEVIEW_CELL forIndexPath:indexPath];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             return cell;
             
-        }
+//        }
         
     }
     return nil;
@@ -126,15 +138,15 @@
 #pragma mark  --- UITableViewDelegate-----
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0) {
-        CGFloat cellheight = 225.f;
+        CGFloat cellheight = 200.f;
         
         if (_detailsClick) {
-            cellheight+= [SDDoctorInfoTableViewCell DetailsViewHeight:@"再见、不再见再见、不再见再见、不再见再见、不再见再见、不再见再见、不再见再见、不再见再见、不再见再见、不再见再见、不再见 " detailsClick:_detailsClick];
+            cellheight+= [SDDoctorInfoTableViewCell DetailsViewHeight:self.model.member_personal detailsClick:_detailsClick];
             
           //  cellheight +=[SDDoctorInfoTableViewCell memberPersonalInfoHeight:@"再见、不再见再见、不再见再见、不再见再见、不再见再见、不再见"];
             
         }else{
-            cellheight+= [SDDoctorInfoTableViewCell DetailsViewHeight:@"再见、不再见再见、不再见再见、不再见再见、不再见再见、不再见再见、不再见再见、不再见再见、不再见再见、不再见再见、不再见 " detailsClick:_detailsClick];
+            cellheight+= [SDDoctorInfoTableViewCell DetailsViewHeight:self.model.member_personal detailsClick:_detailsClick];
         }
         return cellheight;
         
@@ -203,18 +215,58 @@
 #pragma mark  --- 按钮点击事件---- 
 //在线咨询
 -(void)beConsultBtnActon:(UIButton *)sender{
-
-
+    TalkingViewController *vc = [[TalkingViewController alloc]initWithConversationType:1 targetId:_model.huanxinpew];
+    vc.title = _model.member_names;
+    [self.navigationController pushViewController:vc animated:YES];
 
 }
 //电话咨询
 -(void)iphoneConsultBtnAction:(UIButton *)sender{
     
-    
+    NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"tel:%@",_model.live_store_tel];
+    UIWebView * callWebview = [[UIWebView alloc] init];
+    [callWebview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:str]]];
+    [self.view addSubview:callWebview];
     
 }
+#pragma mark  --- 数据相关-------
+
+-(void)requestLoadData{
+    __weak typeof(self) weakSelf = self;
+    [[KRMainNetTool sharedKRMainNetTool]sendNowRequstWith:PrivateDoctorIndex_Url params:@{@"doctor_id":self.doctor_id} withModel:nil waitView:self.view complateHandle:^(id showdata, NSString *error) {
+        if (!error) {
+            if (showdata == nil) {
+                return ;
+            }
+            if ([showdata isKindOfClass:[NSDictionary class]] || [showdata isKindOfClass:[NSMutableDictionary class]]) {
+                
+                weakSelf.model = [SDDoctorConsultModel modelWithDictionary:showdata];
+                
+                [weakSelf.doctorTableView reloadData];
+            }
+            
+        }else{
+            [weakSelf.view showErrorWithTitle:error autoCloseTime:2];
+        }
+        
+        
+    }];
 
 
+
+}
+-(SDDoctorConsultModel *)model{
+    
+    if (!_model) {
+        _model = [[SDDoctorConsultModel alloc]init];
+    }
+    return _model;
+}
+-(void)setDoctor_id:(NSString *)doctor_id{
+    
+    _doctor_id = doctor_id;
+    
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

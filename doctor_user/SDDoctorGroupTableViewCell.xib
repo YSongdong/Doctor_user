@@ -20,14 +20,8 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xhw-hQ-MU9">
                         <rect key="frame" x="10" y="10" width="300" height="65.5"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NO.1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Ec-3H-zPL">
-                                <rect key="frame" x="10" y="10" width="30.5" height="17"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="华西妇科体检" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8bp-Pw-gf1">
-                                <rect key="frame" x="45.5" y="10.5" width="86" height="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NO.1 华西妇科体检" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Ec-3H-zPL">
+                                <rect key="frame" x="10" y="10" width="120" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -52,7 +46,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2017-02-02" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AP8-A2-E2D">
-                                <rect key="frame" x="67" y="47" width="68.5" height="14.5"/>
+                                <rect key="frame" x="76.5" y="47" width="68.5" height="14.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -65,12 +59,9 @@
                             <constraint firstItem="TeF-rI-xnC" firstAttribute="leading" secondItem="8Ec-3H-zPL" secondAttribute="leading" id="Ad6-nw-tRn"/>
                             <constraint firstItem="8Ec-3H-zPL" firstAttribute="top" secondItem="xhw-hQ-MU9" secondAttribute="top" constant="10" id="DuO-K9-bvw"/>
                             <constraint firstItem="eRW-zZ-t8M" firstAttribute="centerY" secondItem="xhw-hQ-MU9" secondAttribute="centerY" id="FzP-Hx-4M1"/>
-                            <constraint firstItem="8bp-Pw-gf1" firstAttribute="leading" secondItem="8Ec-3H-zPL" secondAttribute="trailing" constant="5" id="L0w-o9-RHq"/>
-                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="8bp-Pw-gf1" secondAttribute="trailing" constant="10" id="fmw-8l-Pt2"/>
-                            <constraint firstItem="8bp-Pw-gf1" firstAttribute="centerY" secondItem="8Ec-3H-zPL" secondAttribute="centerY" id="frV-Ys-bqo"/>
                             <constraint firstItem="8Ec-3H-zPL" firstAttribute="leading" secondItem="xhw-hQ-MU9" secondAttribute="leading" constant="10" id="fsw-4i-jsp"/>
                             <constraint firstItem="TeF-rI-xnC" firstAttribute="top" secondItem="8Ec-3H-zPL" secondAttribute="bottom" constant="20" id="gBC-11-Lr3"/>
-                            <constraint firstItem="AP8-A2-E2D" firstAttribute="leading" secondItem="TeF-rI-xnC" secondAttribute="trailing" constant="-4.5" id="k01-fg-Kgc"/>
+                            <constraint firstItem="AP8-A2-E2D" firstAttribute="leading" secondItem="TeF-rI-xnC" secondAttribute="trailing" constant="5" id="k01-fg-Kgc"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -84,7 +75,6 @@
             <connections>
                 <outlet property="cellGroupBtn" destination="eRW-zZ-t8M" id="elj-Aw-diE"/>
                 <outlet property="explairBackgrounView" destination="xhw-hQ-MU9" id="5dU-Wi-d5M"/>
-                <outlet property="hospitalNameLabel" destination="8bp-Pw-gf1" id="jpk-Tu-dR8"/>
                 <outlet property="serialNumberLabel" destination="8Ec-3H-zPL" id="ElQ-QG-4bI"/>
                 <outlet property="showTimeLab" destination="TeF-rI-xnC" id="ej9-uo-W2H"/>
                 <outlet property="timeLabel" destination="AP8-A2-E2D" id="mbo-QK-90q"/>

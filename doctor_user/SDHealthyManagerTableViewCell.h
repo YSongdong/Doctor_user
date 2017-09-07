@@ -20,4 +20,8 @@
 @property (nonatomic,weak) id <SDHealthyManagerTableViewCellDelegte> delegate;
 @property (nonatomic,strong) NSIndexPath *indexPath;
 @property (nonatomic,assign) BOOL isOpen;
+
+
+-(void)setdictManageType:(NSString *)type andIndexPath:(NSIndexPath *)indexPath andWithDict:(NSDictionary *)dict;
+
 @end

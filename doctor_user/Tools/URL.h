@@ -63,6 +63,15 @@ FT_INLINE  NSString  * getNewRequestPath(NSString *act) {
 #define PrivateDoctorFileCark_Url  getNewRequestPath(@"PrivateDoctor/fileCard")
 //预约服务
 #define PrivateDoctoAppointment_Url  getNewRequestPath(@"PrivateDoctor/appointment")
+//我的私人医生
+#define PrivateDoctorIndex_Url  getNewRequestPath(@"PrivateDoctor/doctorInfo")
+//解读报告
+#define PrivateDoctorReport_Url  getNewRequestPath(@"PrivateDoctor/report")
+//预约
+#define PrivateDoctorAppointment_Url  getNewRequestPath(@"PrivateDoctor/appointment")
+//预约列表
+#define PrivateDoctorMentList_Url      getNewRequestPath(@"PrivateDoctor/appointmentList")
+
 
 
 //图片路径

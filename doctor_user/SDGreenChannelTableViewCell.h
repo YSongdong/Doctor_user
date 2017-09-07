@@ -10,6 +10,6 @@
 
 @interface SDGreenChannelTableViewCell : UITableViewCell
 
-
+-(void)setdictManageType:(NSString *)type andIndexPath:(NSIndexPath *)indexPath andWithDict:(NSDictionary *)dict;
 
 @end

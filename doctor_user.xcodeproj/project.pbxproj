@@ -578,6 +578,10 @@
 		F54801231F316B20008E11A3 /* TAPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = F548011F1F316B20008E11A3 /* TAPageControl.m */; };
 		F551618D1F4C001B00E77F4C /* SDSickPerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F551618B1F4C001B00E77F4C /* SDSickPerTableViewCell.m */; };
 		F551618E1F4C001B00E77F4C /* SDSickPerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F551618C1F4C001B00E77F4C /* SDSickPerTableViewCell.xib */; };
+		F559806D1F60D95F00831EEC /* SDDoctorConsultModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F559806C1F60D95F00831EEC /* SDDoctorConsultModel.m */; };
+		F55980761F6121F600831EEC /* SDStateReportModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F55980751F6121F600831EEC /* SDStateReportModel.m */; };
+		F55980791F61226600831EEC /* ReportModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F55980781F61226600831EEC /* ReportModel.m */; };
+		F559807C1F61321F00831EEC /* DoctorConsultHonorModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F559807B1F61321F00831EEC /* DoctorConsultHonorModel.m */; };
 		F55E78381F3D3C8A008F1752 /* SDCircumstFilesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F55E78361F3D3C8A008F1752 /* SDCircumstFilesTableViewCell.m */; };
 		F55E78391F3D3C8A008F1752 /* SDCircumstFilesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F55E78371F3D3C8A008F1752 /* SDCircumstFilesTableViewCell.xib */; };
 		F55E783D1F3D5455008F1752 /* SDSomkeReactionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F55E783B1F3D5455008F1752 /* SDSomkeReactionTableViewCell.m */; };
@@ -1761,6 +1765,14 @@
 		F551618A1F4C001B00E77F4C /* SDSickPerTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDSickPerTableViewCell.h; path = ../SDSickPerTableViewCell.h; sourceTree = "<group>"; };
 		F551618B1F4C001B00E77F4C /* SDSickPerTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SDSickPerTableViewCell.m; path = ../SDSickPerTableViewCell.m; sourceTree = "<group>"; };
 		F551618C1F4C001B00E77F4C /* SDSickPerTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SDSickPerTableViewCell.xib; path = ../SDSickPerTableViewCell.xib; sourceTree = "<group>"; };
+		F559806B1F60D95F00831EEC /* SDDoctorConsultModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDDoctorConsultModel.h; sourceTree = "<group>"; };
+		F559806C1F60D95F00831EEC /* SDDoctorConsultModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDDoctorConsultModel.m; sourceTree = "<group>"; };
+		F55980741F6121F600831EEC /* SDStateReportModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDStateReportModel.h; sourceTree = "<group>"; };
+		F55980751F6121F600831EEC /* SDStateReportModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDStateReportModel.m; sourceTree = "<group>"; };
+		F55980771F61226600831EEC /* ReportModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportModel.h; sourceTree = "<group>"; };
+		F55980781F61226600831EEC /* ReportModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportModel.m; sourceTree = "<group>"; };
+		F559807A1F61321F00831EEC /* DoctorConsultHonorModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DoctorConsultHonorModel.h; sourceTree = "<group>"; };
+		F559807B1F61321F00831EEC /* DoctorConsultHonorModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DoctorConsultHonorModel.m; sourceTree = "<group>"; };
 		F55E78351F3D3C8A008F1752 /* SDCircumstFilesTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDCircumstFilesTableViewCell.h; sourceTree = "<group>"; };
 		F55E78361F3D3C8A008F1752 /* SDCircumstFilesTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDCircumstFilesTableViewCell.m; sourceTree = "<group>"; };
 		F55E78371F3D3C8A008F1752 /* SDCircumstFilesTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDCircumstFilesTableViewCell.xib; sourceTree = "<group>"; };
@@ -4425,6 +4437,10 @@
 		F5091ACB1F579C5600A46400 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				F55980741F6121F600831EEC /* SDStateReportModel.h */,
+				F55980751F6121F600831EEC /* SDStateReportModel.m */,
+				F55980771F61226600831EEC /* ReportModel.h */,
+				F55980781F61226600831EEC /* ReportModel.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -4624,6 +4640,17 @@
 			name = PageControl;
 			sourceTree = "<group>";
 		};
+		F559806A1F60D91E00831EEC /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				F559806B1F60D95F00831EEC /* SDDoctorConsultModel.h */,
+				F559806C1F60D95F00831EEC /* SDDoctorConsultModel.m */,
+				F559807A1F61321F00831EEC /* DoctorConsultHonorModel.h */,
+				F559807B1F61321F00831EEC /* DoctorConsultHonorModel.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		F575D28C1F4EB9CA0083B2F4 /* SDQRCode */ = {
 			isa = PBXGroup;
 			children = (
@@ -4764,6 +4791,7 @@
 		F5A1CB3A1F5940BC00F4A00C /* DoctorConsult */ = {
 			isa = PBXGroup;
 			children = (
+				F559806A1F60D91E00831EEC /* Model */,
 				F5A1CB3F1F59411B00F4A00C /* Views */,
 				F5A1CB3B1F5940FA00F4A00C /* ViewController */,
 			);
@@ -5247,6 +5275,7 @@
 			files = (
 				85F9DBB81E5422220015203F /* DemandContentCell.m in Sources */,
 				F520C28E1F3047AA00976C88 /* HRAdView.m in Sources */,
+				F55980761F6121F600831EEC /* SDStateReportModel.m in Sources */,
 				F52C730A1F3AB1F400CE6D99 /* AddHistoryViewController.m in Sources */,
 				85F9DBD81E5422220015203F /* MJRefreshStateHeader.m in Sources */,
 				85F056B81E48754900F3C455 /* AFHTTPRequestOperation.m in Sources */,
@@ -5459,6 +5488,7 @@
 				85F9DBD41E5422220015203F /* MJRefreshBackNormalFooter.m in Sources */,
 				1C09F2A91ECED9C10011D5A4 /* YMMyAttentionTableViewCell.m in Sources */,
 				1C09F29A1ECEC7E80011D5A4 /* UIImage+CreateBarCode.m in Sources */,
+				F559807C1F61321F00831EEC /* DoctorConsultHonorModel.m in Sources */,
 				F5A1CB291F5908B000F4A00C /* SDFilesMeesageViewController.m in Sources */,
 				8535CD031E49B92B00F66767 /* KRAllNavigationViewController.m in Sources */,
 				1CFEFA041ED82BC3004CE7FE /* YMDepartmentModel.m in Sources */,
@@ -5677,6 +5707,7 @@
 				F58902371F568375005AF016 /* SDMinePrivateDoctorViewController.m in Sources */,
 				1CFDB8CA1ECD4C4B008EDF4C /* YMMyBackCardTableViewCell.m in Sources */,
 				1C9B2FA91ED91C5B0083B708 /* KTRLabelView.m in Sources */,
+				F559806D1F60D95F00831EEC /* SDDoctorConsultModel.m in Sources */,
 				1C74D2121F0F38BB008C6DBC /* YMOrderDetailsCenterTableViewCell.m in Sources */,
 				1CA325721EDFEAB10060D18D /* YMApplicationInformation.m in Sources */,
 				85F9DBB91E5422220015203F /* DemandOrderTableViewCell.m in Sources */,
@@ -5694,6 +5725,7 @@
 				1C74D20E1F0F38BB008C6DBC /* YMMyContentTableViewCell.m in Sources */,
 				1C9721A81ECB006100FE8AE4 /* YMMingDoctorsActivityViewController.m in Sources */,
 				1C74D22A1F0F38D8008C6DBC /* YMFaBuSubTitleTableViewCell.m in Sources */,
+				F55980791F61226600831EEC /* ReportModel.m in Sources */,
 				F55E783D1F3D5455008F1752 /* SDSomkeReactionTableViewCell.m in Sources */,
 				F532924B1F5CF8340051624A /* DownLoadManager.m in Sources */,
 			);

@@ -79,6 +79,7 @@
 @property(nonatomic,copy)NSString *member_phone; 
 @property(nonatomic,copy)NSString *member_real; 
 @property(nonatomic,copy)NSString *is_paypwd;
+@property(nonatomic,copy)NSString *report_type; // 跳私人医生主页面 0 跳宣传页面
 
 + (YMUserInforModel *)currentUser;
 

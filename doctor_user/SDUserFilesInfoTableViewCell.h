@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+#import "SDFilesMessageModel.h"
+
 @interface SDUserFilesInfoTableViewCell : UITableViewCell
+
+@property(nonatomic,strong) SDFilesMessageModel *model;
 
 @end

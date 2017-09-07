@@ -45,9 +45,33 @@
     }else  if ([ManagerType isEqualToString:@"5"]) {
         self.timeLabel.text = @"年度健康报告:2017年08月01日";
     }else  if ([ManagerType isEqualToString:@"6"]) {
+        
+        
         self.timeLabel.text = @"NO.1 2017年08月01日";
         [self.cellDownBtn setTitle:@"已完成" forState:UIControlStateNormal];
     }
+
+
+}
+-(void)setdictManageType:(NSString *)type andIndexPath:(NSIndexPath *)indexPath andWithDict:(NSDictionary *)dict{
+
+    if ([type isEqualToString:@"6"]) {
+        //医生服务到家
+        NSString *numberStr = [NSString stringWithFormat:@"NO.%ld",(long)indexPath.row+1];
+        self.timeLabel.text =[NSString stringWithFormat:@"%@  %@",numberStr,[dict objectForKey:@"report_time"]];
+        NSString *statusStr = [dict objectForKey:@"status"];
+        if ([statusStr isEqualToString:@"0"]) {
+            [self.cellDownBtn setTitle:[dict objectForKey:@"status_desc"] forState:UIControlStateNormal];
+            self.cellDownBtn.backgroundColor  = [UIColor colorWithHexString:@"#F7941D"];
+        }else if ([statusStr isEqualToString:@"1"]){
+            [self.cellDownBtn setTitle:[dict objectForKey:@"status_desc"] forState:UIControlStateNormal];
+            self.cellDownBtn.backgroundColor  = [UIColor colorWithHexString:@"#409FFF"];
+        }else if ([statusStr isEqualToString:@"2"]){
+            [self.cellDownBtn setTitle:[dict objectForKey:@"status_desc"] forState:UIControlStateNormal];
+            self.cellDownBtn.backgroundColor  = [UIColor colorWithHexString:@"#C1C1C1"];
+        }
+    }
+
 
 
 }

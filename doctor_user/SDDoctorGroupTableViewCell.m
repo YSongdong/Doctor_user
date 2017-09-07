@@ -14,7 +14,6 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel; //时间lable
 
-@property (weak, nonatomic) IBOutlet UILabel *hospitalNameLabel;//医院
 @property (weak, nonatomic) IBOutlet UILabel *serialNumberLabel;//序号
 
 @property (weak, nonatomic) IBOutlet UIView *explairBackgrounView;
@@ -48,14 +47,30 @@
     if ([classType isEqualToString:@"1"]) {
         self.showTimeLab.text = @"体检时间:";
     }else  if ([classType isEqualToString:@"3"]) {
-        self.showTimeLab.text = @"解读医师";
+        self.showTimeLab.text = @"解读医师:";
     }else  if ([classType isEqualToString:@"5"]) {
         self.showTimeLab.text = @"";
     }
     
+}
+-(void)setdictManageType:(NSString *)type andIndexPath:(NSIndexPath *)indexPath andWithDict:(NSDictionary *)dict{
+    
+    if ([type isEqualToString:@"3"]) {
+        //名医体检解读
+        
+        self.showTimeLab.text = @"解读医师:";
+        //名字
+        self.serialNumberLabel.text = [dict objectForKey:@"report_name"];
+        //解读医师
+        self.timeLabel.text = [dict objectForKey:@"report_doctor"];
+        //按钮
+        [self.cellGroupBtn setTitle:@"下载" forState:UIControlStateNormal];
+        self.cellGroupBtn.backgroundColor = [UIColor colorWithHexString:@"#409FFF"];
+    }
+    
+
 
 }
-
 
 
 
@@ -64,7 +79,23 @@
 
     // Configure the view for the selected state
 }
+-(void)setIndexPath:(NSIndexPath *)indexPath{
 
+    _indexPath = indexPath;
+
+}
+-(void)setIsOpen:(BOOL)isOpen{
+    
+    _isOpen = isOpen;
+    if (isOpen) {
+        [self.cellGroupBtn setTitle:@"打开" forState:UIControlStateNormal];
+    }
+    
+}
 - (IBAction)cellGroupBtnAction:(UIButton *)sender {
+    if ([self.delegate respondsToSelector:@selector(selectdDownBtnIndexPath:)]) {
+        [self.delegate selectdDownBtnIndexPath:self.indexPath];
+    }
+    
 }
 @end

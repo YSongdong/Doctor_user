@@ -11,7 +11,7 @@
 
 
 #import "SDDatePickerView.h"
-
+#import "SDStateReportModel.h"
 
 #import "SDStateFormExplairTableViewCell.h"
 #import "SDHealthyManagerTableViewCell.h"
@@ -23,9 +23,10 @@
 @interface SDHealthyManagerViewController () <UITableViewDelegate,UITableViewDataSource,SDDoctorYuYueTableViewCellDelegate,SDDatePickerViewDelegate,SDHealthyManagerTableViewCellDelegte,UIDocumentInteractionControllerDelegate>
 
 @property (nonatomic,strong) UITableView *managerTableView;
-
+@property(nonatomic,strong) SDStateReportModel *model;
 @property (nonatomic,strong) UIDocumentInteractionController *documentController;//阅读
-
+@property(nonatomic,assign) NSInteger type; //类型
+@property(nonatomic,strong) NSString *report_time; //选择的时间
 @end
 
 @implementation SDHealthyManagerViewController
@@ -33,6 +34,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initUITableView];
+    
+}
+-(void)viewWillAppear:(BOOL)animated{
+
+    [super viewWillAppear:animated];
+    [self requestDataWithUrl];
+
 }
 -(void)initUITableView{
     if ([self.btnType isEqualToString:@"2"]) {
@@ -44,6 +52,14 @@
         self.managerTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-64-30)];
     }else  if ([self.btnType isEqualToString:@"7"]) {
         self.title = @"医生服务到家预约";
+        [self initBottomView];
+        self.managerTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-64-50)];
+    }else  if ([self.btnType isEqualToString:@"4"]) {
+        self.title = @"绿色住院通道预约";
+        [self initBottomView];
+        self.managerTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-64-50)];
+    }else  if ([self.btnType isEqualToString:@"8"]) {
+        self.title = @"绿色就诊通道预约";
         [self initBottomView];
         self.managerTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-64-50)];
     }
@@ -93,12 +109,15 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if ([self.btnType isEqualToString:@"2"]) {
         //健康管理方案
-        return 2;
+        return self.model.report.count +1;
     }else  if ([self.btnType isEqualToString:@"5"]) {
         //年度健康报告
         return 2;
     }else  if ([self.btnType isEqualToString:@"7"]) {
         //医生服务到家预约
+        return 2;
+    }else  if ([self.btnType isEqualToString:@"4"] ||[self.btnType isEqualToString:@"8"] ) {
+        //绿色住院通道预约
         return 2;
     }
     return 0;
@@ -112,8 +131,8 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }else{
-        if ([self.btnType isEqualToString:@"7"]) {
-            //医生服务到家预约
+        if ([self.btnType isEqualToString:@"7"] || [self.btnType isEqualToString:@"4"] ||[self.btnType isEqualToString:@"8"] ) {
+            //医生服务到家预约    4 绿色住院通道 8 绿色就诊通道
             SDDoctorYuYueTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:SDDOCTORYUYUETABLEVIEW_CELL forIndexPath:indexPath];
             cell.delegate = self;
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -148,6 +167,9 @@
         }else  if ([self.btnType isEqualToString:@"7"]) {
             //医生服务到家预约
             return 220;
+        }else  if ([self.btnType isEqualToString:@"4"] || [self.btnType isEqualToString:@"8"]) {
+            //绿色住院通道预约
+            return 220;
         }
     }else{
         return 70;
@@ -160,7 +182,25 @@
 
     if ([self.btnType isEqualToString:@"7"]) {
         //医生服务到家预约
-       
+        NSMutableDictionary *param = [NSMutableDictionary dictionary];
+        param[@"p_health_id"] =self.p_health_id;
+        param[@"type"] =@"2";
+        param[@"report_time"] = self.report_time;
+        [self requestSubitWithUrl:PrivateDoctorAppointment_Url andParams:param.copy];
+    }else if ([self.btnType isEqualToString:@"4"]) {
+        //绿色住院通道预约
+        NSMutableDictionary *param = [NSMutableDictionary dictionary];
+        param[@"p_health_id"] =self.p_health_id;
+        param[@"type"] =@"3";
+        param[@"report_time"] = self.report_time;
+        [self requestSubitWithUrl:PrivateDoctorAppointment_Url andParams:param.copy];
+    }else if ([self.btnType isEqualToString:@"8"]) {
+        //绿色住院通道预约
+        NSMutableDictionary *param = [NSMutableDictionary dictionary];
+        param[@"p_health_id"] =self.p_health_id;
+        param[@"type"] =@"4";
+        param[@"report_time"] = self.report_time;
+        [self requestSubitWithUrl:PrivateDoctorAppointment_Url andParams:param.copy];
     }
 
 }
@@ -176,6 +216,7 @@
 -(void)selectdTimeNSDict:(NSDictionary *)dic{
 
     NSString *selectTime = dic[@"selectTime"];
+    self.report_time = selectTime;
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:1 inSection:0];
     SDDoctorYuYueTableViewCell *cell =  [self.managerTableView cellForRowAtIndexPath:indexPath];
     cell.selectTime = selectTime;
@@ -274,6 +315,87 @@
     return self.view.bounds;
 }
 
+#pragma mark  ---- 数据相关------
+- (void)requestDataWithUrl {
+   
+    if ([self.btnType isEqualToString:@"2"]) {
+        //健康管理
+        self.type = 3;
+        NSMutableDictionary *param = [NSMutableDictionary dictionary];
+        param[@"p_health_id"] =self.p_health_id;
+        param[@"type"] =[NSString stringWithFormat:@"%ld",(long)self.type];
+        [self requestLoadDataWithUrl:PrivateDoctorReport_Url andParams:param.copy];
+    }else  if ([self.btnType isEqualToString:@"5"]) {
+        //5年度健康报告
+        self.type = 4;
+        NSMutableDictionary *param = [NSMutableDictionary dictionary];
+        param[@"p_health_id"] =self.p_health_id;
+        param[@"type"] =[NSString stringWithFormat:@"%ld",(long)self.type];
+        [self requestLoadDataWithUrl:PrivateDoctorReport_Url andParams:param.copy];
+    }else if ([self.btnType isEqualToString:@"7"]){
+
+    }
+    
+}
+
+//--------请求数据--------
+-(void) requestLoadDataWithUrl:(NSString *)url andParams:(NSDictionary *)param{
+    __weak typeof(self) weakSelf = self;
+    [[KRMainNetTool sharedKRMainNetTool]sendNowRequstWith:url params:param withModel:nil waitView:self.view complateHandle:^(id showdata, NSString *error) {
+        if (!error) {
+            if (showdata  == nil) {
+                return ;
+            }
+            if ([showdata isKindOfClass:[NSDictionary class]] || [showdata isKindOfClass:[NSMutableDictionary class]]) {
+                weakSelf.model = [SDStateReportModel modelWithDictionary:showdata];
+                
+                [weakSelf.managerTableView reloadData];
+                
+            }
+            
+        }else{
+            [weakSelf.view showErrorWithTitle:error autoCloseTime:2];
+        }
+        
+        
+    }];
+}
+//---------------提交预约数据-----
+-(void) requestSubitWithUrl:(NSString *)url andParams:(NSDictionary *)param{
+    __weak typeof(self) weakSelf = self;
+   
+    [[KRMainNetTool sharedKRMainNetTool]sendNowRequstWith:url params:param withModel:nil waitView:self.view complateHandle:^(id showdata, NSString *error) {
+        if (!error) {
+            [weakSelf.navigationController popViewControllerAnimated:YES];
+            
+        }else{
+            [weakSelf.view showErrorWithTitle:error autoCloseTime:2];
+        }
+        
+    }];
+}
+
+
+
+
+
+-(void)setBtnType:(NSString *)btnType{
+    _btnType = btnType;
+    
+}
+-(void)setP_health_id:(NSString *)p_health_id{
+    
+    _p_health_id = p_health_id;
+    
+}
+-(SDStateReportModel *)model{
+    
+    if (!_model) {
+        _model =[[SDStateReportModel alloc]init];
+    }
+    
+    return _model;
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

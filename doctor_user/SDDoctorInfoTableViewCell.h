@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+#import "SDDoctorConsultModel.h"
+
 @class SDDoctorInfoTableViewCell;
 
 @protocol SDDoctorInfoTableViewCellDelegate <NSObject>
@@ -25,6 +27,8 @@
 
 
 @property(nonatomic,assign)BOOL clcickEvent;
+
+@property (nonatomic,strong) SDDoctorConsultModel *model;
 
 +(CGFloat)DetailsViewHeight:(NSString *)text detailsClick:(BOOL)detailsClick;
 

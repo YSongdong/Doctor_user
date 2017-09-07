@@ -10,4 +10,6 @@
 
 @interface SDDoctroConsultViewController : UIViewController
 
+@property(nonatomic,strong) NSString *doctor_id; //	医生id
+
 @end

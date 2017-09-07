@@ -13,6 +13,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel; //时间lab
 
 @property (weak, nonatomic) IBOutlet UIView *greenChannelBackgrouView;
+@property (weak, nonatomic) IBOutlet UILabel *showLab;
 
 
 @end
@@ -34,7 +35,19 @@
     self.greenChannelBackgrouView.layer.borderColor = [UIColor lineColor].CGColor;
     
 }
-
+-(void)setdictManageType:(NSString *)type andIndexPath:(NSIndexPath *)indexPath andWithDict:(NSDictionary *)dict{
+    
+    if ([type isEqualToString:@"4"] ||[type isEqualToString:@"8"] ) {
+        //绿色住院通道
+        NSString *numberStr = [NSString stringWithFormat:@"第%ld次使用时间:",(long)indexPath.row+1];
+        self.showLab.text = numberStr;
+        self.timeLabel.text =[NSString stringWithFormat:@"%@",[dict objectForKey:@"report_time"]];
+        
+    }
+    
+    
+    
+}
 
 
 

@@ -43,7 +43,7 @@
 
     [super viewWillAppear:animated];
     self.tabBarController.tabBar.hidden = YES;
-   // [self requestLoadData];
+    [self requestLoadData];
 
 }
 -(void)initRightBtn{
@@ -192,6 +192,7 @@
             //名医体检解读
             self.hidesBottomBarWhenPushed = YES;
             SDHealthyStateFormViewController *healthyStateVC= [[SDHealthyStateFormViewController alloc]init];
+            healthyStateVC.p_health_id = self.model.p_health_id;
             healthyStateVC.btnType =@"3";
             [self.navigationController pushViewController:healthyStateVC animated:YES];
         }
@@ -202,6 +203,7 @@
             //医生专属咨询
             self.hidesBottomBarWhenPushed = YES;
             SDDoctroConsultViewController *doctorCousultVC = [[SDDoctroConsultViewController alloc]init];
+            doctorCousultVC.doctor_id =self.model.doctor_id;
             [self.navigationController pushViewController:doctorCousultVC animated:YES];
         }
             break;
@@ -210,6 +212,7 @@
             //医生服务到家
             self.hidesBottomBarWhenPushed = YES;
             SDHealthyStateFormViewController *healthyStateVC= [[SDHealthyStateFormViewController alloc]init];
+            healthyStateVC.p_health_id = self.model.p_health_id;
             healthyStateVC.btnType =@"6";
             [self.navigationController pushViewController:healthyStateVC animated:YES];
         }
@@ -219,6 +222,8 @@
             //健康管理方案
             self.hidesBottomBarWhenPushed = YES;
             SDHealthyManagerViewController *managerVC = [[SDHealthyManagerViewController alloc]init];
+            
+            managerVC.p_health_id= self.model.p_health_id;
             managerVC.btnType = @"2";
             [self.navigationController pushViewController:managerVC animated:YES];
         }
@@ -228,6 +233,7 @@
             //绿色住院通道
             self.hidesBottomBarWhenPushed = YES;
             SDHealthyStateFormViewController *healthyStateVC= [[SDHealthyStateFormViewController alloc]init];
+            healthyStateVC.p_health_id = self.model.p_health_id;
             healthyStateVC.btnType =@"4";
             [self.navigationController pushViewController:healthyStateVC animated:YES];
         }
@@ -235,7 +241,11 @@
         case 6:
         {
             //绿色就诊通道
-            
+            self.hidesBottomBarWhenPushed = YES;
+            SDHealthyStateFormViewController *healthyStateVC= [[SDHealthyStateFormViewController alloc]init];
+            healthyStateVC.p_health_id = self.model.p_health_id;
+            healthyStateVC.btnType =@"8";
+            [self.navigationController pushViewController:healthyStateVC animated:YES];
         }
             break;
         case 7:
@@ -244,6 +254,7 @@
             self.hidesBottomBarWhenPushed = YES;
             SDHealthyManagerViewController *managerVC = [[SDHealthyManagerViewController alloc]init];
             managerVC.btnType = @"5";
+            managerVC.p_health_id= self.model.p_health_id;
             [self.navigationController pushViewController:managerVC animated:YES];
         }
             break;
@@ -263,10 +274,11 @@
 
 //拨打私人医生电话
 -(void)telBtnAction:(UIButton *)sender{
-
-
+    NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"tel:%@",_model.member_mobiles];
+    UIWebView * callWebview = [[UIWebView alloc] init];
+    [callWebview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:str]]];
+    [self.view addSubview:callWebview];
     
-
 }
 #pragma mark  --- 数据相关------
 -(SDMyPrivateDoctorModel *)model{
@@ -277,8 +289,6 @@
     return _model;
 
 }
-
-
 -(void)requestLoadData{
     __weak typeof(self) weakSelf = self;
     [[KRMainNetTool sharedKRMainNetTool]sendNowRequstWith:PrivateDoctor_Url params:@{@"member_id":[YMUserInfo sharedYMUserInfo].member_id} withModel:nil waitView:self.view complateHandle:^(id showdata, NSString *error) {

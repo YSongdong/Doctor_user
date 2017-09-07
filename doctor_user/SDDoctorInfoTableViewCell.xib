@@ -137,8 +137,13 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="goodDescriptionLabel" destination="2OK-jH-oVJ" id="A7a-Xm-hNq"/>
                 <outlet property="selectDetailBtn" destination="2kC-iI-84M" id="7GV-ac-UIA"/>
+                <outlet property="userAptitudeLab" destination="XHL-u9-aXa" id="Fs2-NX-tcG"/>
+                <outlet property="userHeaderImageView" destination="StW-sC-Vcv" id="oFO-f1-ZZ2"/>
+                <outlet property="userKSLab" destination="j3G-OX-GiI" id="LI4-7e-oDY"/>
+                <outlet property="userNameLab" destination="tPl-zt-uk0" id="ahx-ZD-Tdj"/>
+                <outlet property="userOccupationLab" destination="abA-h7-xo3" id="cFA-oK-5Iv"/>
+                <outlet property="userPersonalLab" destination="2OK-jH-oVJ" id="K9O-Pa-b8Y"/>
             </connections>
             <point key="canvasLocation" x="33" y="52.5"/>
         </tableViewCell>
