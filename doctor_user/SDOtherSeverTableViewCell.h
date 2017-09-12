@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+#import "SDOtherSeverModel.h"
+
+
 @interface SDOtherSeverTableViewCell : UITableViewCell
+
+@property(nonatomic,strong) SDOtherSeverModel *model;
 
 @end

@@ -16,7 +16,7 @@
             <rect key="frame" x="0.0" y="0.0" width="397" height="219"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="397" height="218.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="397" height="219"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="暂无头像_03" translatesAutoresizingMaskIntoConstraints="NO" id="HQ0-Ou-SPE">
@@ -66,34 +66,21 @@
                         <rect key="frame" x="10" y="100" width="377" height="34"/>
                         <subviews>
                             <button opaque="NO" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jiz-Zr-OYa">
-                                <rect key="frame" x="0.0" y="0.0" width="188" height="34"/>
+                                <rect key="frame" x="0.0" y="0.0" width="377" height="34"/>
                                 <color key="backgroundColor" red="0.23921568627450979" green="0.52156862745098043" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <state key="normal" title="个人健康状况"/>
                                 <connections>
                                     <action selector="heahthyStatusBtnAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="CsB-ai-MVD"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" tag="102" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h9h-qK-drd">
-                                <rect key="frame" x="189" y="0.0" width="188" height="34"/>
-                                <color key="backgroundColor" red="0.23921568630000001" green="0.52156862749999999" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <state key="normal" title="体检报告查看"/>
-                                <connections>
-                                    <action selector="tijianReportBtnAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="ItU-Qe-c5k"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="h9h-qK-drd" firstAttribute="centerY" secondItem="jiz-Zr-OYa" secondAttribute="centerY" id="0k6-6R-dxj"/>
-                            <constraint firstItem="h9h-qK-drd" firstAttribute="leading" secondItem="jiz-Zr-OYa" secondAttribute="trailing" constant="1" id="69K-XV-Oag"/>
-                            <constraint firstAttribute="trailing" secondItem="h9h-qK-drd" secondAttribute="trailing" id="BwL-ze-YXl"/>
+                            <constraint firstAttribute="trailing" secondItem="jiz-Zr-OYa" secondAttribute="trailing" id="EJj-BU-VOr"/>
                             <constraint firstAttribute="height" constant="34" id="LGn-88-3YR"/>
                             <constraint firstItem="jiz-Zr-OYa" firstAttribute="top" secondItem="daH-0G-tlq" secondAttribute="top" id="Wj3-6u-pDT"/>
                             <constraint firstItem="jiz-Zr-OYa" firstAttribute="leading" secondItem="daH-0G-tlq" secondAttribute="leading" id="Y9A-B5-AJA"/>
-                            <constraint firstItem="h9h-qK-drd" firstAttribute="width" secondItem="jiz-Zr-OYa" secondAttribute="width" id="Y9X-iS-a1h"/>
-                            <constraint firstItem="h9h-qK-drd" firstAttribute="height" secondItem="jiz-Zr-OYa" secondAttribute="height" id="YXQ-RO-jSQ"/>
                             <constraint firstAttribute="bottom" secondItem="jiz-Zr-OYa" secondAttribute="bottom" id="dU5-bk-gSB"/>
                         </constraints>
                     </view>

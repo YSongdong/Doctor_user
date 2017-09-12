@@ -221,6 +221,8 @@ static NSString *const saveUsrInfo = @"saveUsrInfo";
                 }else{
                     SDHosporViewController *sdHosporVC = [[SDHosporViewController alloc]init];
                     sdHosporVC.title = @"私人医生";
+                    sdHosporVC.shareType = @"2";
+                    sdHosporVC.shopTitle = @"医生联盟私人医生";
                     sdHosporVC.url = @"http://weixin.ys9958.com/index.php/api/Promote/index";
                     [self.navigationController pushViewController:sdHosporVC animated:YES];
                 }
@@ -229,11 +231,7 @@ static NSString *const saveUsrInfo = @"saveUsrInfo";
                 break;
             case 1:{
                 NSLog(@"健康助手");
-//                YMInfoBaseTableViewController *vc = [[YMInfoBaseTableViewController alloc]initWithStyle:UITableViewStyleGrouped];
-//                    [self.navigationController pushViewController:vc animated:YES];
-                //添加健康档案
-               // [self requestHealtyData];
-                
+
                 self.hidesBottomBarWhenPushed = YES;
                 HealthyHelperViewController *healthyHelperVC = [[HealthyHelperViewController alloc]init];
                 [self.navigationController pushViewController:healthyHelperVC animated:YES];
@@ -457,8 +455,9 @@ static NSString *const saveUsrInfo = @"saveUsrInfo";
 }
 //挂号信息
 -(void)headerCell:(YMMyHeaderTableViewCell *)headerCell registerInfor:(UIButton *)sender{
-    YMGuahaoInfoViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"guahaoView"];
-    [self.navigationController pushViewController:vc animated:YES];
+    
+   // YMGuahaoInfoViewController *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"guahaoView"];
+   // [self.navigationController pushViewController:vc animated:YES];
 }
 //顶部背景
 -(void)headerCell:(YMMyHeaderTableViewCell *)headerCell backGroup:(UIButton *)sender{

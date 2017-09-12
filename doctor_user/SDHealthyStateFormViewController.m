@@ -11,7 +11,7 @@
 
 #import "SDHealthyManagerViewController.h"
 #import "SDStateReportModel.h"
-
+#import "MJRefreshAutoNormalFooter.h"
 //下载
 #import "DownLoadManager.h"
 
@@ -30,7 +30,7 @@
 @property (nonatomic,strong) SDStateReportModel *model;
 @property (nonatomic,strong) UILabel *reportCountLab; //报告数
 @property (nonatomic,strong) UIDocumentInteractionController *documentController;//阅读
-
+@property(nonatomic,assign) NSInteger curpage;
 @end
 
 @implementation SDHealthyStateFormViewController
@@ -38,6 +38,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
+    self.curpage = 1;
     [self initUITableView];
     
 }
@@ -50,29 +51,25 @@
 
 -(void)initUITableView{
     if ([self.btnType isEqualToString:@"1"]) {
-        self.title = @"个人健康状态表";
+        self.title = @"体检报告查看";
         self.formTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-64) style:UITableViewStyleGrouped];
     }else if ([self.btnType isEqualToString:@"3"]){
         self.title = @"名医体检解读";
-        [self initBottomView];
-        self.formTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-64-100) style:UITableViewStyleGrouped];
+       // [self initBottomView];
+        self.formTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-64) style:UITableViewStyleGrouped];
         
-    }else if ([self.btnType isEqualToString:@"4"]){
-        self.title = @"绿色住院通道";
+    }else if ([self.btnType isEqualToString:@"4"] ||[self.btnType isEqualToString:@"6"] || [self.btnType isEqualToString:@"8"] ){
+        if ([self.btnType isEqualToString:@"4"]) {
+            self.title = @"绿色住院通道";
+        }else if ([self.btnType isEqualToString:@"6"]){
+            self.title = @"医生服务到家";
+        }else if ([self.btnType isEqualToString:@"8"]){
+            self.title = @"绿色就诊通道";
+        }
         [self initGreenBottomView];
         self.formTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-64-50) style:UITableViewStyleGrouped];
-        
-    }else if ([self.btnType isEqualToString:@"6"]){
-        self.title = @"医生服务到家";
-        [self initGreenBottomView];
-        self.formTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-64-50) style:UITableViewStyleGrouped];
-        
-    }else if ([self.btnType isEqualToString:@"8"]){
-        self.title = @"绿色就诊通道";
-        [self initGreenBottomView];
-        self.formTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-64-50) style:UITableViewStyleGrouped];
-        
     }
+   
     [self.view addSubview:self.formTableView];
     self.formTableView.delegate = self;
     self.formTableView.dataSource = self;
@@ -83,6 +80,12 @@
     [self.formTableView registerNib:[UINib nibWithNibName:SDDOCTORGROUPTABLEVIEW_CELL bundle:nil] forCellReuseIdentifier:SDDOCTORGROUPTABLEVIEW_CELL];
     [self.formTableView registerNib:[UINib nibWithNibName:SDGREENCHANNELTABLEVIEW_CELL bundle:nil] forCellReuseIdentifier:SDGREENCHANNELTABLEVIEW_CELL];
     [self.formTableView registerNib:[UINib nibWithNibName:SDHEALTHYMANAGERTABLEVIEW_CELL bundle:nil] forCellReuseIdentifier:SDHEALTHYMANAGERTABLEVIEW_CELL];
+    MJRefreshAutoNormalFooter *footer  = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        [self loadMoreData];
+    }];
+    footer.refreshingTitleHidden = YES ;
+    footer.stateLabel.hidden = YES ;
+    _formTableView.footer = footer;
 }
 -(void)initBottomView{
     UIView *bottomView = [[UIView alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT-64-100, SCREEN_WIDTH, 100)];
@@ -128,23 +131,24 @@
         make.top.equalTo(bottomView.mas_top).offset(1);
         make.left.equalTo(bottomView.mas_left);
         make.bottom.equalTo(bottomView);
+        make.right.equalTo(bottomView);
     }];
     [yuyueBtn addTarget:self action:@selector(onYuyueBtnActon:) forControlEvents:UIControlEventTouchUpInside];
     
-    //购买次数
-    UIButton *buyCountBtn = [[UIButton alloc]init];
-    [bottomView addSubview:buyCountBtn];
-    [buyCountBtn setTitle:@"购买次数" forState:UIControlStateNormal];
-    buyCountBtn.backgroundColor = [UIColor NaviBackgrounColor];
-    buyCountBtn.titleLabel.font = [UIFont systemFontOfSize:15];
-    [buyCountBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(yuyueBtn.mas_right).offset(0);
-        make.right.equalTo(bottomView);
-        make.width.equalTo(yuyueBtn.mas_width);
-        make.height.equalTo(yuyueBtn.mas_height);
-        make.centerY.equalTo(yuyueBtn.mas_centerY);
-    }];
-    [buyCountBtn addTarget:self action:@selector(buyCountBtnAction:) forControlEvents:UIControlEventTouchUpInside];
+//    //购买次数
+//    UIButton *buyCountBtn = [[UIButton alloc]init];
+//    [bottomView addSubview:buyCountBtn];
+//    [buyCountBtn setTitle:@"购买次数" forState:UIControlStateNormal];
+//    buyCountBtn.backgroundColor = [UIColor NaviBackgrounColor];
+//    buyCountBtn.titleLabel.font = [UIFont systemFontOfSize:15];
+//    [buyCountBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.equalTo(yuyueBtn.mas_right).offset(0);
+//        make.right.equalTo(bottomView);
+//        make.width.equalTo(yuyueBtn.mas_width);
+//        make.height.equalTo(yuyueBtn.mas_height);
+//        make.centerY.equalTo(yuyueBtn.mas_centerY);
+//    }];
+//    [buyCountBtn addTarget:self action:@selector(buyCountBtnAction:) forControlEvents:UIControlEventTouchUpInside];
 
 }
 #pragma mark  ---UITableView---
@@ -157,22 +161,12 @@
     if (section == 0) {
         return 1;
     }else{
-        if ([self.btnType isEqualToString:@"1"]) {
-            return 2; 
-        }else if ([self.btnType isEqualToString:@"3"]){
+       // if ([self.btnType isEqualToString:@"1"]) {
+        //    return 2;
+      //  }else {
            // 3 鸣医体检解读
             return self.model.report.count;
-            
-        }else if ([self.btnType isEqualToString:@"4"]){
-            //绿色住院通道
-           return self.model.report.count;
-        }else if ([self.btnType isEqualToString:@"6"]){
-            //医生服务到家
-            return self.model.report.count;
-        }else if ([self.btnType isEqualToString:@"8"]){
-            //绿色就诊通道
-            return self.model.report.count;
-        }
+      //  }
         
     }
     return 0;
@@ -209,8 +203,8 @@
             cell.delegate = self;
             NSDictionary *dict = self.model.report[indexPath.row];
             [cell setdictManageType:self.btnType andIndexPath:indexPath andWithDict:dict];
-            
-            BOOL  isDownFinish = [self isFinishExistFilesName:nil];
+            NSString *url = [dict objectForKey:@"report_url"];
+            BOOL  isDownFinish = [self isFinishExistFilesName:url];
             if (isDownFinish) {
                 cell.isOpen = YES;
             }
@@ -227,12 +221,8 @@
         if ([self.btnType isEqualToString:@"1"]) {
            return 154;
         }else if ([self.btnType isEqualToString:@"3"]) {
-            return 170;
-        }else if ([self.btnType isEqualToString:@"4"]) {
             return 190;
-        }else if ([self.btnType isEqualToString:@"6"]) {
-            return 190;
-        }else if ([self.btnType isEqualToString:@"8"]) {
+        }else {
             return 190;
         }
 
@@ -241,11 +231,7 @@
             return 90;
         }else if ([self.btnType isEqualToString:@"3"]) {
            return 90;
-        }else if ([self.btnType isEqualToString:@"4"]) {
-            return 67;
-        }else if ([self.btnType isEqualToString:@"6"]) {
-            return 67;
-        }else if ([self.btnType isEqualToString:@"8"]) {
+        }else  {
             return 67;
         }
        
@@ -292,20 +278,23 @@
             make.centerY.equalTo(headerView.mas_centerY);
         }];
         
-        self.reportCountLab = [[UILabel alloc]init];
-        [headerView addSubview:self.reportCountLab];
-        if (![self.model.physical_examination isEqualToString:@"0"]) {
-            self.reportCountLab.text =[NSString stringWithFormat:@"(%@/%@)",self.model.physical_examination_con,self.model.physical_examination];
-        }else{
-            self.reportCountLab.text = @"( 1 / 2 )";
+        if (![self.btnType isEqualToString:@"1"]) {
+            self.reportCountLab = [[UILabel alloc]init];
+            [headerView addSubview:self.reportCountLab];
+            if (![self.model.physical_examination isEqualToString:@"0"]) {
+                self.reportCountLab.text =[NSString stringWithFormat:@"(%@/%@)",self.model.physical_examination_con,self.model.physical_examination];
+            }else{
+                self.reportCountLab.text = @"( 1 / 2 )";
+            }
+            self.reportCountLab.textColor = [UIColor NaviBackgrounColor];
+            self.reportCountLab.font = [UIFont systemFontOfSize:15];
+            [self.reportCountLab mas_makeConstraints:^(MASConstraintMaker *make) {
+                make.left.equalTo(tijianLabel.mas_right).offset(5);
+                make.centerY.equalTo(tijianLabel.mas_centerY);
+            }];
+
         }
-        self.reportCountLab.textColor = [UIColor NaviBackgrounColor];
-        self.reportCountLab.font = [UIFont systemFontOfSize:15];
-        [self.reportCountLab mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.equalTo(tijianLabel.mas_right).offset(5);
-            make.centerY.equalTo(tijianLabel.mas_centerY);
-        }];
-        
+
         return headerView;
     }
     return nil;
@@ -348,9 +337,6 @@
         
     }
     
-
-
-
 }
 //购买次数
 -(void)buyCountBtnAction:(UIButton *)sender{
@@ -361,12 +347,22 @@
 }
 #pragma mark ----cell点击下载事件-------
 -(void)selectdDownBtnIndexPath:(NSIndexPath *)indexPath{
-  //  SDStateReportModel *model = self.dataArr[indexPath.row];
+    NSDictionary *dic = self.model.report[indexPath.row];
+    NSString *url = [dic objectForKey:@"report_url"];
+    BOOL  isDownFinish = [self isFinishExistFilesName:url];
+    if (isDownFinish) {
+        // 下载完成
+        
+        [self openReadAppFilesName:url.md5String];
+        
+    }else{
+        //下载
+        [self starDownIndexPath:indexPath andUrl:url];
+      
+    }
     
-    
-
 }
--(void) starDownIndexPath:(NSIndexPath *)indexPath{
+-(void) starDownIndexPath:(NSIndexPath *)indexPath andUrl:(NSString *)url{
     // 启动任务
     __weak typeof(self) weakSelf = self;
     
@@ -375,7 +371,7 @@
     hud.label.text = @"下载中";
     hud.contentColor= [UIColor blackColor];
     
-    [[DownLoadManager sharedInstance]downLoadWithURL:nil progress:^(float progress) {
+    [[DownLoadManager sharedInstance]downLoadWithURL:url progress:^(float progress) {
         
         hud.progress = progress;
         
@@ -384,10 +380,11 @@
         //关闭
         dispatch_async(dispatch_get_main_queue(), ^{
             [hud hideAnimated:YES];
+            //下载完成
+            SDDoctorGroupTableViewCell *cell = [weakSelf.formTableView cellForRowAtIndexPath:indexPath];
+            cell.isOpen = YES;
         });
-        //下载完成
-        SDDoctorGroupTableViewCell *cell = [weakSelf.formTableView cellForRowAtIndexPath:indexPath];
-        cell.isOpen = YES;
+        
         
     } faile:^(NSError *error) {
         [weakSelf.view showErrorWithTitle:error.userInfo[NSLocalizedDescriptionKey] autoCloseTime:2];
@@ -437,30 +434,45 @@
 
 
 #pragma mark  ---- 数据相关------
+-(void)loadMoreData{
+    _curpage ++;
+    [self requestDataWithUrl];
+}
 - (void)requestDataWithUrl {
-    if ([self.btnType isEqualToString:@"3"]) {
+    if ([self.btnType isEqualToString:@"1"]) {
+        //体检报告查看
+        NSMutableDictionary *param = [NSMutableDictionary dictionary];
+        param[@"p_health_id"] =self.p_health_id;
+        param[@"type"] =@"5";
+        param[@"curpage"] = @(_curpage);
+        [self requestLoadDataWithUrl:PrivateDoctorReport_Url andParams:param.copy];
+    }else if ([self.btnType isEqualToString:@"3"]) {
         //名医体检解读
         NSMutableDictionary *param = [NSMutableDictionary dictionary];
         param[@"p_health_id"] =self.p_health_id;
         param[@"type"] =@"2";
+        param[@"curpage"] = @(_curpage);
         [self requestLoadDataWithUrl:PrivateDoctorReport_Url andParams:param.copy];
     }else  if ([self.btnType isEqualToString:@"6"]) {
         //医生服务到家--预约列表
         NSMutableDictionary *param = [NSMutableDictionary dictionary];
         param[@"p_health_id"] =self.p_health_id;
         param[@"type"] =@"2";
+        param[@"curpage"] = @(_curpage);
         [self requestLoadDataWithUrl:PrivateDoctorMentList_Url andParams:param.copy];
     }else  if ([self.btnType isEqualToString:@"4"]) {
         //绿色住院通道--预约列表
         NSMutableDictionary *param = [NSMutableDictionary dictionary];
         param[@"p_health_id"] =self.p_health_id;
         param[@"type"] =@"3";
+        param[@"curpage"] = @(_curpage);
         [self requestLoadDataWithUrl:PrivateDoctorMentList_Url andParams:param.copy];
     }else  if ([self.btnType isEqualToString:@"8"]) {
         //绿色住院通道--预约列表
         NSMutableDictionary *param = [NSMutableDictionary dictionary];
         param[@"p_health_id"] =self.p_health_id;
         param[@"type"] =@"4";
+        param[@"curpage"] = @(_curpage);
         [self requestLoadDataWithUrl:PrivateDoctorMentList_Url andParams:param.copy];
     }
 
@@ -473,16 +485,20 @@
                 return ;
             }
             if ([showdata isKindOfClass:[NSDictionary class]] || [showdata isKindOfClass:[NSMutableDictionary class]]) {
+                if (weakSelf.curpage == 1 && weakSelf.model.report.count>0) {
+                    NSMutableArray *arr =[NSMutableArray arrayWithArray:weakSelf.model.report];
+                    [ arr removeAllObjects ];
+                }
                 weakSelf.model = [SDStateReportModel modelWithDictionary:showdata];
-               
+                if ([self.formTableView.footer isRefreshing]) {
+                    [self.formTableView.footer endRefreshing];
+                }
                 [weakSelf.formTableView reloadData];
-                
             }
             
         }else{
             [weakSelf.view showErrorWithTitle:error autoCloseTime:2];
         }
-        
         
     }];
 

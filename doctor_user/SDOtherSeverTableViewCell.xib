@@ -68,6 +68,12 @@
                     <constraint firstItem="1l8-O6-HvU" firstAttribute="top" secondItem="KEE-cc-17H" secondAttribute="bottom" constant="10" id="uib-js-MjS"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="otherSeverConcetLab" destination="1l8-O6-HvU" id="o6C-7K-rTl"/>
+                <outlet property="otherSeverImageView" destination="MBp-Yc-Ecs" id="bNT-T2-QUO"/>
+                <outlet property="otherSeverTimeLab" destination="Asp-V6-69V" id="JDO-LU-pdz"/>
+                <outlet property="otherSeverTitleLab" destination="KEE-cc-17H" id="HFz-xA-IU1"/>
+            </connections>
             <point key="canvasLocation" x="97" y="108"/>
         </tableViewCell>
     </objects>

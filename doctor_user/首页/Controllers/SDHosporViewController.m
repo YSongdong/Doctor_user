@@ -103,7 +103,17 @@
     UMSocialMessageObject *messageObject = [UMSocialMessageObject messageObject];
     messageObject.title =@"分享";
     //创建图片内容对象
-    UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:self.shopTitle descr:@"我正在使用鸣医通，看病找专家，预约不排队，快来试试吧！" thumImage:[UIImage imageNamed:@"share_iconImg"]];
+    NSString *shareDesc;
+    if ([self.shareType isEqualToString:@"1"]) {
+        
+        shareDesc =@"我正在使用鸣医通，看病找专家，预约不排队，快来试试吧！";
+        
+    }else if ([self.shareType isEqualToString:@"2"]){
+        
+        shareDesc =@"我已获得了医盟私人医生服务：“加持健康人生，臻享九重服务”，赶快加入，跟我一起享受健康人生吧！";
+    
+    }
+    UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:self.shopTitle descr:shareDesc thumImage:[UIImage imageNamed:@"share_iconImg"]];
     //    NSString *url;
     //    url = @"http://ys9958.com/shop/index.php?act=invite&op=reg";
     //    shareObject.webpageUrl = [url stringByAppendingFormat:@"&inviter_id=%@&type=1",[YMUserInfo sharedYMUserInfo].member_id];
@@ -131,6 +141,12 @@
     _shopTitle = shopTitle;
     self.navigationItem.title = shopTitle;
 }
+-(void)setShareType:(NSString *)shareType{
+
+    _shareType = shareType;
+
+}
+
 -(void) createWebView{
 
     UIWebView *webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-20)];

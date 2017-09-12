@@ -70,9 +70,11 @@
             [self.cellDownBtn setTitle:[dict objectForKey:@"status_desc"] forState:UIControlStateNormal];
             self.cellDownBtn.backgroundColor  = [UIColor colorWithHexString:@"#C1C1C1"];
         }
+    }else if ([type isEqualToString:@"5"]){
+        //年度健康报告
+        self.timeLabel.text =[NSString stringWithFormat:@"年度健康报告: %@",[dict objectForKey:@"report_time"]];
+
     }
-
-
 
 }
 

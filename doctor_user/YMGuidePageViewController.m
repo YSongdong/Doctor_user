@@ -48,7 +48,7 @@
         make.height.mas_equalTo(listImage.size.height);
         make.width.mas_equalTo(listImage.size.width);
         make.centerX.equalTo(self.view.mas_centerX);
-        make.bottom.equalTo(self.view.mas_bottom).offset(-130);
+        make.bottom.equalTo(self.view.mas_bottom).offset(-140);
     }];
     
     //设置状态栏颜色

@@ -438,6 +438,7 @@ static NSString *const rankingCell = @"rankingCell";
     SDHosporViewController *sdHosporVC = [[SDHosporViewController alloc]init];
     sdHosporVC.title = title;
     sdHosporVC.url = url;
+    sdHosporVC.shareType =@"1";
     [self.navigationController pushViewController:sdHosporVC animated:YES];
 
 }

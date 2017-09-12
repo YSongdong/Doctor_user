@@ -14,4 +14,6 @@
 
 @property(nonatomic,strong) NSString *shopTitle;
 
+@property(nonatomic,strong) NSString *shareType; //分享type  1热点分享  2私人医生渲染页面
+
 @end

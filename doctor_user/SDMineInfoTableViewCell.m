@@ -47,7 +47,7 @@
     self.userHeaderImageView.layer.borderColor = [UIColor whiteColor].CGColor;
     
     //背景view
-    self.btnBackGrounView.layer.cornerRadius = CGRectGetHeight(self.btnBackGrounView.frame)/2;
+    self.btnBackGrounView.layer.cornerRadius = 5;
     self.btnBackGrounView.layer.masksToBounds = YES;
     self.btnBackGrounView.layer.borderWidth  = 1;
     self.btnBackGrounView.layer.borderColor = [UIColor whiteColor].CGColor;

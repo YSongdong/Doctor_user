@@ -68,25 +68,7 @@ static NSString *const userInfoCell = @"userInfoCell";
 -(void)initVar{
     _selctUserInfoArry = [NSMutableArray array];
     _memberArray = [NSMutableArray array];
-//    
-//    for (NSInteger i = 0; i<10; i++) {
-//        YMUserInfoMemberModel *model = [[YMUserInfoMemberModel alloc]init];
-//        model.leaguer_img = @"http://local.yimeng.com/data/upload/shop/leaguer/201705/05485329841774570.png";
-//        model.leagure_name = @"葛小二葛小二葛小二葛小二葛小二葛小二葛小二";
-//        model.leagure_sex = @"1";
-//        model.leagure_age = @"32";
-//        model.leagure_idcard = @"500*********000000";
-//        model.leagure_mobile = @"185****9220";
-//        model.leaguer_id = [NSString stringWithFormat:@"%ld",(long)i];
-//        if (i == 3) {
-//            model.is_default = @"1";
-//        }else{
-//            model.is_default = @"0";
-//        }
-//        [_memberArray addObject:model];
-//    }
-//    
-//    [_userinfoMemberTabelView reloadData];
+
 }
 
 -(void)addNavigationRightButton{

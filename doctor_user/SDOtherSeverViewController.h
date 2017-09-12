@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface SDOtherSeverViewController : UIViewController
-
+@property(nonatomic,strong) NSString * p_health_id; //私人医生会员
 @end

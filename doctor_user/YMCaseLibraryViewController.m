@@ -99,7 +99,6 @@ static NSString *const caseLibraryTableViewCell = @"caseLibraryTableViewCell";
     }];
 }
 
-
 -(void)initNavigationLeft{
     
     UIView *leftBtnView= [[UIView alloc]initWithFrame:CGRectMake(0, 0, 20, 44)];

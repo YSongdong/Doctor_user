@@ -568,6 +568,7 @@
 		F532924B1F5CF8340051624A /* DownLoadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F532924A1F5CF8340051624A /* DownLoadManager.m */; };
 		F532924E1F5CF8670051624A /* NSString+Hash.m in Sources */ = {isa = PBXBuildFile; fileRef = F532924D1F5CF8670051624A /* NSString+Hash.m */; };
 		F53CCCB61F5FD0C600752294 /* SDMyPrivateDoctorModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F53CCCB51F5FD0C600752294 /* SDMyPrivateDoctorModel.m */; };
+		F5419A9D1F622A37004EB4EC /* SDOtherSeverModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F5419A9C1F622A37004EB4EC /* SDOtherSeverModel.m */; };
 		F54801111F316AFA008E11A3 /* SDCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F548010C1F316AFA008E11A3 /* SDCollectionViewCell.m */; };
 		F54801121F316AFA008E11A3 /* SDCycleScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = F548010E1F316AFA008E11A3 /* SDCycleScrollView.m */; };
 		F54801131F316AFA008E11A3 /* UIView+SDExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = F54801101F316AFA008E11A3 /* UIView+SDExtension.m */; };
@@ -1746,6 +1747,8 @@
 		F532924D1F5CF8670051624A /* NSString+Hash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Hash.m"; sourceTree = "<group>"; };
 		F53CCCB41F5FD0C600752294 /* SDMyPrivateDoctorModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDMyPrivateDoctorModel.h; sourceTree = "<group>"; };
 		F53CCCB51F5FD0C600752294 /* SDMyPrivateDoctorModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDMyPrivateDoctorModel.m; sourceTree = "<group>"; };
+		F5419A9B1F622A37004EB4EC /* SDOtherSeverModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDOtherSeverModel.h; sourceTree = "<group>"; };
+		F5419A9C1F622A37004EB4EC /* SDOtherSeverModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDOtherSeverModel.m; sourceTree = "<group>"; };
 		F548010B1F316AFA008E11A3 /* SDCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDCollectionViewCell.h; sourceTree = "<group>"; };
 		F548010C1F316AFA008E11A3 /* SDCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDCollectionViewCell.m; sourceTree = "<group>"; };
 		F548010D1F316AFA008E11A3 /* SDCycleScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDCycleScrollView.h; sourceTree = "<group>"; };
@@ -4609,6 +4612,15 @@
 			name = DownLoad;
 			sourceTree = "<group>";
 		};
+		F5419A9A1F622A18004EB4EC /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				F5419A9B1F622A37004EB4EC /* SDOtherSeverModel.h */,
+				F5419A9C1F622A37004EB4EC /* SDOtherSeverModel.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		F548010A1F316AE3008E11A3 /* SDCycleScrollView */ = {
 			isa = PBXGroup;
 			children = (
@@ -4731,6 +4743,7 @@
 		F5A1CB151F58F1EA00F4A00C /* OtherSever */ = {
 			isa = PBXGroup;
 			children = (
+				F5419A9A1F622A18004EB4EC /* Model */,
 				F5A1CB171F58F20000F4A00C /* Views */,
 				F5A1CB161F58F1F700F4A00C /* ViewController */,
 			);
@@ -5718,6 +5731,7 @@
 				1C74D2171F0F38BB008C6DBC /* YMOrderFulfillTableViewCell.m in Sources */,
 				1C3FE7281ED3ED8E00D56BDE /* YMDoctorDetailsHonorModel.m in Sources */,
 				1C74D2091F0F38BB008C6DBC /* YMHetongContentTableViewCell.m in Sources */,
+				F5419A9D1F622A37004EB4EC /* SDOtherSeverModel.m in Sources */,
 				1CB3F5D61ED2CADB00654984 /* YMCaseDetailsDayInformationModel.m in Sources */,
 				85DAEF3F1E547F9500DD9015 /* SDWaitingView.m in Sources */,
 				8535CC921E49988900F66767 /* YMZhangdanDetailTableViewCell.m in Sources */,

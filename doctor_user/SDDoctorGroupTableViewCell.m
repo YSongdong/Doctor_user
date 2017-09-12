@@ -43,7 +43,7 @@
     
 }
 -(void)setClassType:(NSString *)classType{
-    //1 体检报告查看 2健康管理 3体检解读 4绿色住院通道 5年度健康报告 6医生服务到家 7医生服务到家-预约服务
+   
     if ([classType isEqualToString:@"1"]) {
         self.showTimeLab.text = @"体检时间:";
     }else  if ([classType isEqualToString:@"3"]) {
@@ -54,15 +54,27 @@
     
 }
 -(void)setdictManageType:(NSString *)type andIndexPath:(NSIndexPath *)indexPath andWithDict:(NSDictionary *)dict{
-    
+     //1 体检报告查看 2健康管理 3体检解读 4绿色住院通道 5年度健康报告 6医生服务到家 7医生服务到家-预约服务
     if ([type isEqualToString:@"3"]) {
         //名医体检解读
-        
         self.showTimeLab.text = @"解读医师:";
         //名字
-        self.serialNumberLabel.text = [dict objectForKey:@"report_name"];
+        NSString *numberStr = [NSString stringWithFormat:@"NO.%ld",indexPath.row+1];
+        self.serialNumberLabel.text = [NSString stringWithFormat:@"%@ %@",numberStr,[dict objectForKey:@"report_time"]];
         //解读医师
         self.timeLabel.text = [dict objectForKey:@"report_doctor"];
+        //按钮
+        [self.cellGroupBtn setTitle:@"下载" forState:UIControlStateNormal];
+        self.cellGroupBtn.backgroundColor = [UIColor colorWithHexString:@"#409FFF"];
+    }else if ([type isEqualToString:@"1"]) {
+        NSLog(@"dic ===%@",dict);
+        //名医体检解读
+        self.showTimeLab.text = @"体验时间:";
+        //名字
+        NSString *numberStr = [NSString stringWithFormat:@"NO.%ld",indexPath.row+1];
+        self.serialNumberLabel.text = [NSString stringWithFormat:@"%@ %@",numberStr,[dict objectForKey:@"report_name"]];
+        //解读医师
+        self.timeLabel.text = [dict objectForKey:@"report_time"];
         //按钮
         [self.cellGroupBtn setTitle:@"下载" forState:UIControlStateNormal];
         self.cellGroupBtn.backgroundColor = [UIColor colorWithHexString:@"#409FFF"];

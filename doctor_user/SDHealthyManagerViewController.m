@@ -8,7 +8,7 @@
 
 #import "SDHealthyManagerViewController.h"
 
-
+#import "MJRefreshAutoNormalFooter.h"
 
 #import "SDDatePickerView.h"
 #import "SDStateReportModel.h"
@@ -27,12 +27,15 @@
 @property (nonatomic,strong) UIDocumentInteractionController *documentController;//阅读
 @property(nonatomic,assign) NSInteger type; //类型
 @property(nonatomic,strong) NSString *report_time; //选择的时间
+@property(nonatomic,assign) NSInteger curpage;
 @end
 
 @implementation SDHealthyManagerViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.curpage = 1;
+    self.view.backgroundColor = [UIColor whiteColor];
     [self initUITableView];
     
 }
@@ -50,16 +53,14 @@
         self.title = @"年度健康报告";
         [self initContactBottomView];
         self.managerTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-64-30)];
-    }else  if ([self.btnType isEqualToString:@"7"]) {
-        self.title = @"医生服务到家预约";
-        [self initBottomView];
-        self.managerTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-64-50)];
-    }else  if ([self.btnType isEqualToString:@"4"]) {
-        self.title = @"绿色住院通道预约";
-        [self initBottomView];
-        self.managerTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-64-50)];
-    }else  if ([self.btnType isEqualToString:@"8"]) {
-        self.title = @"绿色就诊通道预约";
+    }else  if ([self.btnType isEqualToString:@"7"] || [self.btnType isEqualToString:@"4"] ||[self.btnType isEqualToString:@"8"] ) {
+        if ([self.btnType isEqualToString:@"7"]) {
+          self.title = @"医生服务到家预约";
+        }else  if ([self.btnType isEqualToString:@"4"]) {
+            self.title = @"绿色住院通道预约";
+        }else  if ([self.btnType isEqualToString:@"8"]) {
+            self.title = @"绿色就诊通道预约";
+        }
         [self initBottomView];
         self.managerTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-64-50)];
     }
@@ -72,7 +73,12 @@
     [self.managerTableView registerNib:[UINib nibWithNibName:SDSTATEFORMEXPLAIRTABLEVIEE_CELL bundle:nil] forCellReuseIdentifier:SDSTATEFORMEXPLAIRTABLEVIEE_CELL];
     [self.managerTableView registerNib:[UINib nibWithNibName:SDHEALTHYMANAGERTABLEVIEW_CELL bundle:nil] forCellReuseIdentifier:SDHEALTHYMANAGERTABLEVIEW_CELL];
     [self.managerTableView registerNib:[UINib nibWithNibName:SDDOCTORYUYUETABLEVIEW_CELL bundle:nil] forCellReuseIdentifier:SDDOCTORYUYUETABLEVIEW_CELL];
-    
+    MJRefreshAutoNormalFooter *footer  = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        [self loadMoreData];
+    }];
+    footer.refreshingTitleHidden = YES ;
+    footer.stateLabel.hidden = YES ;
+    _managerTableView.footer = footer;
     
 }
 -(void)initBottomView{
@@ -112,12 +118,10 @@
         return self.model.report.count +1;
     }else  if ([self.btnType isEqualToString:@"5"]) {
         //年度健康报告
-        return 2;
-    }else  if ([self.btnType isEqualToString:@"7"]) {
-        //医生服务到家预约
-        return 2;
-    }else  if ([self.btnType isEqualToString:@"4"] ||[self.btnType isEqualToString:@"8"] ) {
-        //绿色住院通道预约
+        return self.model.report.count+1;
+        
+    }else  if ([self.btnType isEqualToString:@"4"] ||[self.btnType isEqualToString:@"8"] ||[self.btnType isEqualToString:@"7"]) {
+        //绿色住院通道预约 7 医生服务到家预约
         return 2;
     }
     return 0;
@@ -140,10 +144,13 @@
             
         }else{
             SDHealthyManagerTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:SDHEALTHYMANAGERTABLEVIEW_CELL forIndexPath:indexPath];
-            cell.ManagerType = self.btnType;
+            //cell.ManagerType = self.btnType;
             cell.indexPath = indexPath;
             cell.delegate = self;
-            BOOL  isDownFinish = [self isFinishExistFilesName:DOWNLOADURL];
+            NSDictionary *dict = self.model.report[indexPath.row-1];
+            [cell setdictManageType:self.btnType andIndexPath:indexPath andWithDict:dict];
+            NSString *url = [dict objectForKey:@"report_url"];
+            BOOL  isDownFinish = [self isFinishExistFilesName:url];
             if (isDownFinish) {
                 cell.isOpen = YES;
             }
@@ -224,20 +231,18 @@
 }
 #pragma mark  --- 选择下载和打开按钮事件----
 -(void)selectdDownOrOpenBtn:(UIButton *)sender andIndexPath:(NSIndexPath *)indexPath{
-    
-  
-    BOOL  isDownFinish = [self isFinishExistFilesName:DOWNLOADURL];
+    NSDictionary *dict = self.model.report[indexPath.row-1];
+    NSString *url = [dict objectForKey:@"report_url"];
+    BOOL  isDownFinish = [self isFinishExistFilesName:url];
     if (isDownFinish) {
        // 下载完成
-      
-        [self openReadAppFilesName:DOWNLOADURL.md5String];
-    
+        [self openReadAppFilesName:url.md5String];
     }else{
        //下载
         sender.selected = !sender.selected;
         if (sender.selected) {
             //下载
-            [self starDownIndexPath:indexPath];
+            [self starDownIndexPath:indexPath andUrl:url];
         }else{
            //暂停
           [[DownLoadManager sharedInstance]stopTask];
@@ -246,7 +251,7 @@
     }
 
 }
--(void) starDownIndexPath:(NSIndexPath *)indexPath{
+-(void) starDownIndexPath:(NSIndexPath *)indexPath andUrl:(NSString *)url{
     // 启动任务
     __weak typeof(self) weakSelf = self;
     
@@ -255,7 +260,7 @@
     hud.label.text = @"下载中";
     hud.contentColor= [UIColor blackColor];
    
-    [[DownLoadManager sharedInstance]downLoadWithURL:DOWNLOADURL progress:^(float progress) {
+    [[DownLoadManager sharedInstance]downLoadWithURL:url progress:^(float progress) {
         
         hud.progress = progress;
         
@@ -264,10 +269,11 @@
         //关闭
         dispatch_async(dispatch_get_main_queue(), ^{
             [hud hideAnimated:YES];
+            //下载完成
+            SDHealthyManagerTableViewCell *cell = [weakSelf.managerTableView cellForRowAtIndexPath:indexPath];
+            cell.isOpen = YES;
         });
-        //下载完成
-        SDHealthyManagerTableViewCell *cell = [weakSelf.managerTableView cellForRowAtIndexPath:indexPath];
-        cell.isOpen = YES;
+       
         
     } faile:^(NSError *error) {
         [weakSelf.view showErrorWithTitle:error.userInfo[NSLocalizedDescriptionKey] autoCloseTime:2];
@@ -316,6 +322,10 @@
 }
 
 #pragma mark  ---- 数据相关------
+-(void)loadMoreData{
+    _curpage ++;
+    [self requestDataWithUrl];
+}
 - (void)requestDataWithUrl {
    
     if ([self.btnType isEqualToString:@"2"]) {
@@ -324,6 +334,7 @@
         NSMutableDictionary *param = [NSMutableDictionary dictionary];
         param[@"p_health_id"] =self.p_health_id;
         param[@"type"] =[NSString stringWithFormat:@"%ld",(long)self.type];
+        param[@"curpage"] = @(_curpage);
         [self requestLoadDataWithUrl:PrivateDoctorReport_Url andParams:param.copy];
     }else  if ([self.btnType isEqualToString:@"5"]) {
         //5年度健康报告
@@ -331,6 +342,7 @@
         NSMutableDictionary *param = [NSMutableDictionary dictionary];
         param[@"p_health_id"] =self.p_health_id;
         param[@"type"] =[NSString stringWithFormat:@"%ld",(long)self.type];
+         param[@"curpage"] = @(_curpage);
         [self requestLoadDataWithUrl:PrivateDoctorReport_Url andParams:param.copy];
     }else if ([self.btnType isEqualToString:@"7"]){
 
@@ -347,8 +359,16 @@
                 return ;
             }
             if ([showdata isKindOfClass:[NSDictionary class]] || [showdata isKindOfClass:[NSMutableDictionary class]]) {
+                if (weakSelf.curpage == 1 && weakSelf.model.report.count>0) {
+                    NSMutableArray *arr =[NSMutableArray arrayWithArray:weakSelf.model.report];
+                    [ arr removeAllObjects ];
+                }
+                
                 weakSelf.model = [SDStateReportModel modelWithDictionary:showdata];
                 
+                if ([self.managerTableView.footer isRefreshing]) {
+                    [self.managerTableView.footer endRefreshing];
+                }
                 [weakSelf.managerTableView reloadData];
                 
             }

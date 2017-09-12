@@ -72,6 +72,9 @@ FT_INLINE  NSString  * getNewRequestPath(NSString *act) {
 //预约列表
 #define PrivateDoctorMentList_Url      getNewRequestPath(@"PrivateDoctor/appointmentList")
 
+//增值业务列表
+#define PrivateDoctorService_Url    getNewRequestPath(@"PrivateDoctor/doctorService")
+
 
 
 //图片路径

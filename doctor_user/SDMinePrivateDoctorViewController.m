@@ -34,7 +34,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"我的私人医生";
-    [self initRightBtn];
+   // [self initRightBtn];
     [self inintUITableView];
     [self initBottomView];
     
@@ -104,7 +104,7 @@
 
 -(void) inintUITableView{
 
-    self.privDoctTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-100)];
+    self.privDoctTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-100-64)];
     [self.view addSubview:self.privDoctTableView];
     self.privDoctTableView.delegate = self;
     self.privDoctTableView.dataSource = self;
@@ -171,10 +171,7 @@
 //体检报告查看
 -(void)selectdTiJianBtn:(UIButton *)sender{
     
-    self.hidesBottomBarWhenPushed = YES;
-    SDHealthyStateFormViewController *healthyStateVC= [[SDHealthyStateFormViewController alloc]init];
-    healthyStateVC.btnType =@"1";
-    [self.navigationController pushViewController:healthyStateVC animated:YES];
+   
 
 }
 #pragma mark  --- 服务按钮事件--------
@@ -184,7 +181,11 @@
         case 0:
         {
           //全身健康体检
-        
+            self.hidesBottomBarWhenPushed = YES;
+            SDHealthyStateFormViewController *healthyStateVC= [[SDHealthyStateFormViewController alloc]init];
+            healthyStateVC.p_health_id = self.model.p_health_id;
+            healthyStateVC.btnType =@"1";
+            [self.navigationController pushViewController:healthyStateVC animated:YES];
         }
             break;
         case 1:
@@ -263,6 +264,7 @@
             //其他增值服务
             self.hidesBottomBarWhenPushed = YES;
             SDOtherSeverViewController *otherSeverVC = [[SDOtherSeverViewController alloc]init];
+            otherSeverVC.p_health_id= self.model.p_health_id;
             [self.navigationController pushViewController:otherSeverVC animated:YES];
         }
             break;
@@ -307,7 +309,6 @@
         }
         
     }];
-
 
 }
 
