@@ -81,17 +81,10 @@ RCIMUserInfoDataSource,RCIMReceiveMessageDelegate,YMStartUpViewControllerDelegat
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     
-//    NSDictionary *remoteNotification = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
-//    NSLog(@"若launchOptions包含UIApplicationLaunchOptionsRemoteNotificationKey表示用户点击本地通知导致app被启动运行；若不包含则可能为直接点击icon被启动或其他");
+
 
     self.window = [[UIWindow alloc]init];
-//    JPUSHRegisterEntity * entity = [[JPUSHRegisterEntity alloc] init];
-//    entity.types = JPAuthorizationOptionAlert|JPAuthorizationOptionBadge|JPAuthorizationOptionSound;
-//    if ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0) {
-//        // 可以添加自定义categories
-//        // NSSet<UNNotificationCategory *> *categories for iOS10 or later
-//        // NSSet<UIUserNotificationCategory *> *categories for iOS8 and iOS9
-//    }
+
     [[UMSocialManager defaultManager] openLog:YES];
     [[UMSocialManager defaultManager] setUmSocialAppkey:@"58a2632b9f06fd221e000b44"];
     /* 设置微信的appKey和appSecret */
@@ -115,26 +108,41 @@ RCIMUserInfoDataSource,RCIMReceiveMessageDelegate,YMStartUpViewControllerDelegat
     [[RCIM sharedRCIM]setUserInfoDataSource:self];
     
 //    [JPUSHService registerForRemoteNotificationConfig:entity delegate:self];
-    
-    JPUSHRegisterEntity * entity = [[JPUSHRegisterEntity alloc] init];
-    entity.types = JPAuthorizationOptionAlert|JPAuthorizationOptionBadge|JPAuthorizationOptionSound;
-    if ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0) {
-        // 可以添加自定义categories
-        // NSSet<UNNotificationCategory *> *categories for iOS10 or later
-        // NSSet<UIUserNotificationCategory *> *categories for iOS8 and iOS9
-    }
-    [JPUSHService registerForRemoteNotificationConfig:entity delegate:self];
-//    NSString *advertisingId = [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString];
-    [JPUSHService setupWithOption:launchOptions appKey:@"a8ecc2fa9f10e272a456cb15"
-                          channel:nil
-                 apsForProduction:YES
-            advertisingIdentifier:nil];
-    
-    
-//    [JPUSHService setupWithOption:launchOptions appKey:@"a8ecc2fa9f10e272a456cb15"
+//    
+//    JPUSHRegisterEntity * entity = [[JPUSHRegisterEntity alloc] init];
+//    entity.types = JPAuthorizationOptionAlert|JPAuthorizationOptionBadge|JPAuthorizationOptionSound;
+//    if ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0) {
+//        // 可以添加自定义categories
+//        // NSSet<UNNotificationCategory *> *categories for iOS10 or later
+//        // NSSet<UIUserNotificationCategory *> *categories for iOS8 and iOS9
+//    }
+//    [JPUSHService registerForRemoteNotificationConfig:entity delegate:self];
+////    NSString *advertisingId = [[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString];
+//    [JPUSHService setupWithOption:launchOptions appKey:@"09614d215869eb060e07718e"
 //                          channel:nil
 //                 apsForProduction:YES
 //            advertisingIdentifier:nil];
+    
+    if ([[UIDevice currentDevice].systemVersion floatValue] >= 10.0) {
+        JPUSHRegisterEntity * entity = [[JPUSHRegisterEntity alloc] init];
+        entity.types = UNAuthorizationOptionAlert|UNAuthorizationOptionBadge|UNAuthorizationOptionSound;
+        [JPUSHService registerForRemoteNotificationConfig:entity delegate:self];
+    }
+    else if ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0) {
+        //可以添加自定义categories
+        [JPUSHService registerForRemoteNotificationTypes:(UIUserNotificationTypeBadge |
+                                                          UIUserNotificationTypeSound |
+                                                          UIUserNotificationTypeAlert)
+                                              categories:nil];
+    }
+    
+    [JPUSHService setupWithOption:launchOptions appKey:@"09614d215869eb060e07718e"
+                          channel:nil
+                 apsForProduction:YES
+            advertisingIdentifier:nil];  // 这里是没有advertisingIdentifier的情况，有的话，大家在自行添加
+    //注册远端消息通知获取device token
+    [application registerForRemoteNotifications];
+    
     if(![[NSUserDefaults standardUserDefaults] boolForKey:FirstEnterTheHomepage]){
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(longinSuccess) name:@"longinSuccess" object:nil];
     }
@@ -192,8 +200,6 @@ RCIMUserInfoDataSource,RCIMReceiveMessageDelegate,YMStartUpViewControllerDelegat
         
         NSLog(@"通过appStore获取的版本号是：%@",newVersion);
         
-        
-        
         //对比发现的新版本和本地的版本
         if ([newVersion floatValue] > [localVersion floatValue])
         {
@@ -218,7 +224,6 @@ RCIMUserInfoDataSource,RCIMReceiveMessageDelegate,YMStartUpViewControllerDelegat
 
 - (void)switchRootViewController {
 
-    
     NSDictionary *dic = [self readDic];
     NSString *str = [[NSUserDefaults standardUserDefaults] stringForKey:@"login"];
     NSLog(@"%@",str);
@@ -265,13 +270,7 @@ RCIMUserInfoDataSource,RCIMReceiveMessageDelegate,YMStartUpViewControllerDelegat
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 
 {
-    //    if ([url.host isEqualToString:@"safepay"]){//支付宝钱包快登授权返回 authCode
-    //        [[AlipaySDK defaultService] processAuthResult:url standbyCallback:^(NSDictionary *resultDic) {
-    //
-    //        }];
-    //
-    //        return YES;
-    //    }
+  
     NSLog(@"%@",url.host);
     if ([url.host isEqualToString:@"safepay"]){//支付宝钱包快登授权返回 authCode
         [[AlipaySDK defaultService] processAuthResult:url standbyCallback:^(NSDictionary *resultDic) {
@@ -362,19 +361,14 @@ RCIMUserInfoDataSource,RCIMReceiveMessageDelegate,YMStartUpViewControllerDelegat
 - (void)application:(UIApplication *)application
 didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
 //     NSLog(@"这里的Token就是我们设备要告诉服务端的Token码 == %@",deviceToken);//这里的Token就是我们设备要告诉服务端的Token码
-//   NSLog(@"deviceToken====%@", [NSString stringWithFormat:@"Device Token: %@", deviceToken]);
-//    
-//    NSLog(@"%@",[[[[deviceToken description] stringByReplacingOccurrencesOfString: @"<" withString: @""]                  stringByReplacingOccurrencesOfString: @">" withString: @""]                 stringByReplacingOccurrencesOfString: @" " withString: @""]);
-    
+
     [JPUSHService registerDeviceToken:deviceToken];
 }
 // 获得Device Token失败
 - (void)application:(UIApplication *)application
 didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
     NSLog(@"did Fail To Register For Remote Notifications With Error: %@", error);
-     NSLog(@"did Fail To Register For Remote Notifications With Error: %@", error);
-    
-     NSLog(@"Registfail%@",error);
+  
 }
 #if __IPHONE_OS_VERSION_MAX_ALLOWED > __IPHONE_7_1
 - (void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings {
@@ -422,12 +416,13 @@ didReceiveRemoteNotification:(NSDictionary *)userInfo
 fetchCompletionHandler:
 (void (^)(UIBackgroundFetchResult))completionHandler {
     
-//    [JPUSHService setTags:nil alias:[YMUserInfo sharedYMUserInfo].member_id callbackSelector:@selector(selectorpadk:) object:self];
-    
     [JPUSHService handleRemoteNotification:userInfo];
-    [self pushNotificationCenter:userInfo];
-  
+
+    [self showTopViewWith:userInfo];
+
     completionHandler(UIBackgroundFetchResultNewData);
+    [application cancelAllLocalNotifications];
+    [JPUSHService resetBadge];
 }
 
 - (void)application:(UIApplication *)application
@@ -456,9 +451,7 @@ didReceiveLocalNotification:(UILocalNotification *)notification {
     if([notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
         [JPUSHService handleRemoteNotification:userInfo];
         NSLog(@"iOS10 前台收到远程通知:%@", [self logDic:userInfo]);
-        
         [self showTopViewWith:userInfo];
-        
     }
     else {
         // 判断为本地通知
@@ -524,7 +517,7 @@ didReceiveLocalNotification:(UILocalNotification *)notification {
         [JPUSHService handleRemoteNotification:userInfo];
         NSLog(@"iOS10 收到远程通知:%@", [self logDic:userInfo]);
         
-        
+         [self showTopViewWith:userInfo];
     }
     else {
         // 判断为本地通知
@@ -688,9 +681,7 @@ didReceiveLocalNotification:(UILocalNotification *)notification {
         NSLog(@"rescode: %d, \ntags: %@, \nalias: %@\n", iResCode, iTags , iAlias);//对应的状态码返回为0，代表成功
     }];
 
-    
 }
-
 
 -(void)pushNotificationCenter:(NSDictionary *)userInfo{
     

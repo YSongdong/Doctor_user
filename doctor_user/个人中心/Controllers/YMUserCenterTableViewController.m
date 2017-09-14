@@ -226,7 +226,6 @@ static NSString *const saveUsrInfo = @"saveUsrInfo";
                     sdHosporVC.url = @"http://weixin.ys9958.com/index.php/api/Promote/index";
                     [self.navigationController pushViewController:sdHosporVC animated:YES];
                 }
-                
             }
                 break;
             case 1:{
@@ -438,8 +437,6 @@ static NSString *const saveUsrInfo = @"saveUsrInfo";
 //鸣医
 -(void)headerCell:(YMMyHeaderTableViewCell *)headerCell myMingyYi:(UIButton *)sender{
     //需求订单
-//    DemandOrderViewController *vc = [SECOND_STORBOARD instantiateViewControllerWithIdentifier:@"demandOrderIdentifeir"];
-//    vc.type = 1;
      YMOrderViewController *vc = [[YMOrderViewController alloc]init];
     [self.navigationController pushViewController:vc animated:YES];
 }

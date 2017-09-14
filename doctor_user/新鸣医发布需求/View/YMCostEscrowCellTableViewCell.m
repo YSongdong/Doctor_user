@@ -36,7 +36,7 @@
     _titleLabel = [[UILabel alloc]init];
     _titleLabel.font = [UIFont systemFontOfSize:13];
     _titleLabel.textColor = RGBCOLOR(80, 80, 80);
-    _titleLabel.text = @"费用托管";
+    _titleLabel.text = @"服务费";
     [self addSubview:_titleLabel];
     [_titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.top.equalTo(self).offset(10);
@@ -58,7 +58,8 @@
     _subTextField.delegate = self;
     _subTextField.font = [UIFont systemFontOfSize:13];
     _subTextField.textColor = RGBCOLOR(80, 80, 80);
-    _subTextField.placeholder = @"请输入服务费用";
+  //  _subTextField.placeholder = @"请输入服务费用";
+    _subTextField.enabled = NO;
     [self addSubview:_subTextField];
     _subTextField.textAlignment = NSTextAlignmentRight;
     [_subTextField mas_makeConstraints:^(MASConstraintMaker *make) {

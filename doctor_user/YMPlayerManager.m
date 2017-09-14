@@ -32,8 +32,6 @@
 }
 
 
-
-
 -(void)startPay{
     if (!_dic) {
         return;

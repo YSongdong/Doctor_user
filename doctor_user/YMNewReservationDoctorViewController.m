@@ -78,6 +78,7 @@ static NSString *const registeredViewTableCell = @"registeredViewTableCell";
     _yuyueDic = [NSMutableDictionary dictionary];
     [_yuyueDic setObject:[YMUserInfo sharedYMUserInfo].member_id forKey:@"member_id"];
     [_yuyueDic setObject:[NSString isEmpty:_member_id]?@"":_member_id forKey:@"doctor_member_id"];
+    [_yuyueDic setObject:self.member_aptitude_money forKey:@"money"];
     [_yuyueDic setObject:@"0" forKey:@"agent_regist"];
     _demand_time = @"";
     _leaguer_Name = @"";
@@ -281,11 +282,11 @@ static NSString *const registeredViewTableCell = @"registeredViewTableCell";
         case 3:{
             YMCostEscrowCellTableViewCell *cell =[[YMCostEscrowCellTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:costEscrowCellTableCell];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            cell.delegate = self;
-            cell.titleName = @"服务费用:";
-            cell.subText = _yuyueDic[@"money"];
-            NSString *placder = [NSString stringWithFormat:@"不得少于%@服务费",self.member_aptitude_money];
-            cell.subTextField.placeholder = placder;
+            cell.titleName = @"服务费";
+            cell.subText = self.member_aptitude_money;
+//            cell.subText = _yuyueDic[@"money"];
+//            NSString *placder = [NSString stringWithFormat:@"不得少于%@服务费",self.member_aptitude_money];
+//            cell.subTextField.placeholder = placder;
             return cell;
         }
             break;

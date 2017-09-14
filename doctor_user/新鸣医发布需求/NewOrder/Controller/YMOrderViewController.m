@@ -388,9 +388,6 @@ static NSString *const MiYiOrderCell = @"MiYiOrderCell";
 
 #pragma mark---------数据相关-------
 
-
-
-
 -(void)requestDiseasesListData{
     __weak typeof(self) weakSelf = self;
     NSMutableDictionary *param=[NSMutableDictionary dictionary];

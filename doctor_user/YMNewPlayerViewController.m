@@ -89,7 +89,7 @@ static NSString *const payResultFinish = @"payResultFinish";
 
 -(void)initHeaderView{
     _headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 150)];
-    _headerView.backgroundColor = RGBCOLOR(75, 166, 255);
+    _headerView.backgroundColor =[UIColor colorWithHexString:@"#3d85cc"];
     UILabel *tipLabel = [[UILabel alloc]init];
     tipLabel.text = @"金额";
     tipLabel.textColor = [UIColor whiteColor];

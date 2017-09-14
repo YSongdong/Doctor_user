@@ -105,6 +105,7 @@ static NSString *const costEscrowCell = @"costEscrowCell";
         UIAlertAction *action = [UIAlertAction actionWithTitle:dic[@"ename"] style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             _ename = dic[@"ename"];
             [_orderDic setObject:dic[@"disorder"] forKey:@"aptitude"];
+            [_orderDic setObject:dic[@"money_limit"] forKey:@"money"];
             [_contentTableView reloadData];
         }];
         [_controller addAction:action];
@@ -413,19 +414,21 @@ static NSString *const costEscrowCell = @"costEscrowCell";
             }else{
                 YMCostEscrowCellTableViewCell *cell =[[YMCostEscrowCellTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:costEscrowCell];
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
-                cell.delegate = self;
-                if (![NSString isEmpty: _orderDic[@"money"]]) {
-                    cell.subText =_orderDic[@"money"];
-                }
-                if (![NSString isEmpty:_ename]) {
-                    
-                    for (NSDictionary *dic in _forumDatalist) {
-                        if ([_ename isEqualToString:dic[@"ename"]]) {
-                            cell.minimumAmount = dic[@"money_limit"];
-                            break;
-                        }
-                    }
-                }
+                NSString *moneyStr = _orderDic[@"money"];
+                cell.subText =moneyStr;
+//                cell.delegate = self;
+//                if (![NSString isEmpty: _orderDic[@"money"]]) {
+//                    cell.subText =_orderDic[@"money"];
+//                }
+//                if (![NSString isEmpty:_ename]) {
+//                    
+//                    for (NSDictionary *dic in _forumDatalist) {
+//                        if ([_ename isEqualToString:dic[@"ename"]]) {
+//                            cell.minimumAmount = dic[@"money_limit"];
+//                            break;
+//                        }
+//                    }
+//                }
                 return cell;
             }
         }
