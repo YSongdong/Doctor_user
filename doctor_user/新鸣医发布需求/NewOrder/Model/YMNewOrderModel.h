@@ -29,4 +29,16 @@
 @property(nonatomic,copy)NSString *diseases_id; //疑难杂症时间
 @property(nonatomic,copy)NSString *diseases_time;//疑难杂症时间
 
+
+@property(nonatomic,copy)NSString *member_id; //用户member_id
+@property(nonatomic,copy)NSString *leaguer_name; // 用户（中文）
+@property(nonatomic,copy)NSString *leaguer_id; //成员ID
+@property(nonatomic,copy)NSString *big_ks; // 大科室disorder
+@property(nonatomic,copy)NSString *small_ks; //小科室disorder
+@property(nonatomic,copy)NSString *small_kss; //小科室disorder (中文)
+@property(nonatomic,copy)NSString *demand_content; //详情描述
+@property(nonatomic,copy)NSString *hospital_id; // 医院ID
+@property(nonatomic,copy)NSString *hospital_name; // 医院ID (中文)
+@property(nonatomic,copy)NSString *aptitude; //医生职称disorder
+@property(nonatomic,copy)NSString *aptitudes; //医生职称disorder (中文)
 @end

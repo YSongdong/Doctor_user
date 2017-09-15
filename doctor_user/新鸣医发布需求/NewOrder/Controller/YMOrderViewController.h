@@ -7,10 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+
+
 @class YMOrderViewController;
+
 @protocol YMOrderViewControllerDelegate <NSObject>
 
--(void)orderView:(YMOrderViewController *)orderView demand_sn:(NSString *)demand_sn;
+-(void)orderView:(YMOrderViewController *)orderView andNSDict:(NSDictionary *)dict;
 
 @end
 
@@ -20,7 +23,7 @@
 
 
 @property(nonatomic,assign)BOOL returnRoot; //是不是回到首页
-
+@property(nonatomic,assign) BOOL isFuzhen; //是否复诊
 @property(nonatomic,assign)BOOL isYiNan; //是否疑难杂症
 
 

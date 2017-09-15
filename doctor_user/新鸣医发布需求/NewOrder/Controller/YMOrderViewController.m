@@ -38,6 +38,8 @@ static NSString *const MiYiOrderCell = @"MiYiOrderCell";
 
 @property(nonatomic,assign)NSInteger type;
 
+@property(nonatomic,assign)NSInteger order_type;
+
 @property(nonatomic,copy)NSString *status_mark;
 
 @property(nonatomic,assign)NSInteger curpage;
@@ -88,7 +90,10 @@ static NSString *const MiYiOrderCell = @"MiYiOrderCell";
     [self initOrderStatusView];
     [self initTableView];
 }
-
+-(void)setIsFuzhen:(BOOL)isFuzhen{
+    _isFuzhen = isFuzhen;
+    _order_type = 1;
+}
 -(void)requrtData{
     __weak typeof(self) weakSelf = self;
     [[KRMainNetTool sharedKRMainNetTool]
@@ -96,14 +101,14 @@ static NSString *const MiYiOrderCell = @"MiYiOrderCell";
      params:@{@"member_id":[YMUserInfo sharedYMUserInfo].member_id,
               @"type":@(_type),
               @"status_mark":_status_mark,
-              @"curpage":@(_curpage)}
+              @"curpage":@(_curpage),
+              @"order_type":@(_order_type)}
      withModel:nil
      waitView:self.view
      complateHandle:^(id showdata, NSString *error) {
     if (showdata == nil) {
         return ;
     }
-        
     if ([showdata isKindOfClass:[NSArray class]] || [showdata isKindOfClass:[NSMutableArray class]]) {
         if (weakSelf.curpage == 1 && weakSelf.OrderArry.count>0) {
             [weakSelf.OrderArry removeAllObjects];
@@ -111,7 +116,6 @@ static NSString *const MiYiOrderCell = @"MiYiOrderCell";
         for (NSDictionary *dic in showdata) {
             [weakSelf.OrderArry addObject:[YMNewOrderModel modelWithJSON:dic]];
         }
-        
         if ([self.orderTabelView.footer isRefreshing]) {
             [self.orderTabelView.footer endRefreshing];
         }
@@ -209,9 +213,31 @@ static NSString *const MiYiOrderCell = @"MiYiOrderCell";
     
     if (_type == 1) {
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
-        if ([self.delegate respondsToSelector:@selector(orderView:demand_sn:)]) {
+        if ([self.delegate respondsToSelector:@selector(orderView:andNSDict:)]) {
             YMNewOrderModel *model = _OrderArry[indexPath.row];
-            [self.delegate orderView:self demand_sn:model.demand_sn];
+            NSMutableDictionary *dic= [NSMutableDictionary dictionary];
+            dic[@"member_id"] = model.member_id;
+            dic[@"demand_type"] = model.demand_type;
+            dic[@"leaguer_id"] = model.leaguer_id;
+            dic[@"big_ks"] = model.big_ks;
+            dic[@"small_ks"] = model.small_ks;
+            dic[@"small_kss"] = model.small_kss;
+            dic[@"title"] = model.title;
+            dic[@"demand_content"] = model.demand_content;
+            dic[@"demand_time"] = model.demand_time;
+            dic[@"hospital_id"] = model.hospital_id;
+            dic[@"hospital_name"] = model.hospital_name;
+            dic[@"aptitude"] = model.aptitude;
+            dic[@"aptitudes"] = model.aptitudes;
+            dic[@"leaguer_name"] = model.leaguer_name;
+            dic[@"order_id"] = model.demand_id;
+            dic[@"leaguer_id"] = model.leaguer_id;
+            dic[@"money"] = model.money;
+            //返回的的复诊的订单名字
+            dic[@"fuzhen"] = model.demand_sn;
+            
+            
+            [self.delegate orderView:self andNSDict:dic.copy];
             UIViewController *ctrl = [[self navigationController] popViewControllerAnimated:YES];
             if (ctrl == nil) {
                 [self dismissViewControllerAnimated:YES completion:nil];

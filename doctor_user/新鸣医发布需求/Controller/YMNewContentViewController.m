@@ -346,11 +346,17 @@ static NSString *const costEscrowCell = @"costEscrowCell";
                 [cell drawBottomLine:10 right:0];
             }else{
                 cell.titleName = @"就诊医院";
-                if (![NSString isEmpty:_treatmentHospital]) {
-                    cell.subTitleName = _treatmentHospital;
+                if (![NSString isEmpty:_orderDic[@"hospital_id"]]) {
+                    cell.subTitleName = _orderDic[@"hospital_name"];
+                
                 }else{
-                    cell.subTitleName = @"非必选";
+                    if (![NSString isEmpty:_treatmentHospital]) {
+                        cell.subTitleName = _treatmentHospital;
+                    }else{
+                        cell.subTitleName = @"非必选";
+                    }
                 }
+            
             }
             return cell;
         }
@@ -360,12 +366,15 @@ static NSString *const costEscrowCell = @"costEscrowCell";
                 YMFaBuSubTitleTableViewCell *cell = [[YMFaBuSubTitleTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:contentTitleCell];
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
                 cell.titleName = @"职称筛选";
-                if ([NSString isEmpty:_ename]) {
-                    cell.subTitleName = @"请选择医师职称";
+                if (![NSString isEmpty:_orderDic[@"aptitude"]]) {
+                    cell.subTitleName = _orderDic[@"aptitudes"];
                 }else{
-                    cell.subTitleName = _ename;
+                    if ([NSString isEmpty:_ename]) {
+                        cell.subTitleName = @"请选择医师职称";
+                    }else{
+                        cell.subTitleName = _ename;
+                    }
                 }
-                
                 [cell drawBottomLine:10 right:0];
                 return cell;
             }else{
@@ -502,6 +511,10 @@ static NSString *const costEscrowCell = @"costEscrowCell";
     [_contentTableView reloadData];
 }
 
+-(void)setOrderDic:(NSMutableDictionary *)orderDic{
+    _orderDic = orderDic;
+
+}
 -(void)endEditing{
     [self keyboardWillHide];
     [self.view endEditing:YES];

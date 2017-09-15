@@ -27,6 +27,8 @@ static NSString *const FaBuSubTitleTableViewCell = @"FaBuSubTitleTableViewCell";
 
 @property(nonatomic,strong)NSMutableDictionary *ordeDic;
 
+@property(nonatomic,strong)NSDictionary *fuzhenDict; //复诊dic
+
 @property(nonatomic,copy)NSString *userName;
 
 @property(nonatomic,copy)NSString *KSName;
@@ -60,6 +62,7 @@ static NSString *const FaBuSubTitleTableViewCell = @"FaBuSubTitleTableViewCell";
 }
 -(void)initVar{
     _ordeDic = [NSMutableDictionary dictionary];
+    _fuzhenDict = [NSDictionary dictionary];
     _userName = @"";
     _KSName= @"";
     [_ordeDic setObject:@"0" forKey:@"is_daifa"];
@@ -106,14 +109,14 @@ static NSString *const FaBuSubTitleTableViewCell = @"FaBuSubTitleTableViewCell";
 
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 4;
+    return 3;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    if (section == 0|| section == 3) {
+    if ( section == 2) {
         return 1;
     }
-    if (section == 2) {
+    if (section == 0) {
         if ([_ordeDic[@"is_fuzhen"]integerValue] ==1) {
             return 2;
         }else{
@@ -125,22 +128,16 @@ static NSString *const FaBuSubTitleTableViewCell = @"FaBuSubTitleTableViewCell";
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
    
-    if ((indexPath.section==1&&indexPath.row == 0)||(indexPath.section==2&&indexPath.row == 0)) {
+    if (indexPath.section==0&&indexPath.row == 0) {
         YMFaBuSwitchTableViewCell *cell = [[YMFaBuSwitchTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:FaBuSwitchTableViewCell];
         cell.delegate = self;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
-        
-        if ((indexPath.section==1&&indexPath.row == 0)) {
-           cell.On = [_ordeDic[@"is_daifa"] integerValue] == 1?YES:NO;
-            cell.titleName = @"是否代发:";
-            [cell drawBottomLine:10 right:0];
-        }else{
-            cell.On = [_ordeDic[@"is_fuzhen"] integerValue] == 1?YES:NO;
-            cell.titleName = @"是否复诊:";
-            if ([_ordeDic[@"is_fuzhen"] integerValue] == 1) {
-                [cell drawBottomLine:10 right:0];
-            }
+        cell.On = [_ordeDic[@"is_fuzhen"] integerValue] == 1?YES:NO;
+        cell.titleName = @"是否复诊:";
+        if ([_ordeDic[@"is_fuzhen"] integerValue] == 1) {
+           // [cell drawBottomLine:10 right:0];
+  
         }
         return cell;
     }else{
@@ -148,55 +145,56 @@ static NSString *const FaBuSubTitleTableViewCell = @"FaBuSubTitleTableViewCell";
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         switch (indexPath.section) {
             case 0:{
-                
-                cell.titleName = @"需求类型:";
-                 cell.subTitleName = @"请选择您的需求类型";
-                switch ([_ordeDic[@"demand_type"] integerValue]) {
-                    case 1:
-                         cell.subTitleName = @"询医问诊";
-                        break;
-                    case 2:
-                        cell.subTitleName = @"市内坐诊";
-                        break;
-                    case 3:
-                        cell.subTitleName = @"活动讲座";
-                        break;
-                    default:
-                        break;
+                if (indexPath.row == 1) {
+                    cell.titleName = @"对应的订单:";
+                    cell.subTitleName = @"请选择";
+                    if (![NSString isEmpty: _ordeDic[@"fuzhen"]]) {
+                        cell.subTitleName = _ordeDic[@"fuzhen"];
+                    }
                 }
-               
+                
             }
                 break;
             case 1:{
-                
-                    cell.titleName = @"选择成员:";
-                if ([NSString isEmpty:_userName]) {
-                    cell.subTitleName = @"请选择";
+                if (indexPath.row == 0) {
+                    cell.titleName = @"需求类型:";
+                    cell.subTitleName = @"请选择您的需求类型";
+                    switch ([_ordeDic[@"demand_type"] integerValue]) {
+                        case 1:
+                            cell.subTitleName = @"询医问诊";
+                            break;
+                        case 2:
+                            cell.subTitleName = @"市内坐诊";
+                            break;
+                        case 3:
+                            cell.subTitleName = @"活动讲座";
+                            break;
+                        default:
+                            break;
+                    }
+
                 }else{
-                    cell.subTitleName = _userName;
+                    cell.titleName = @"选择用户:";
+                    if ([NSString isEmpty:_userName]) {
+                        cell.subTitleName = @"请选择";
+                    }else{
+                        cell.subTitleName = _userName;
+                    }
                 }
                 
             }
                 break;
             case 2:{
-                
-                    cell.titleName = @"对应的订单:";
-                    cell.subTitleName = @"请选择";
-                if (![NSString isEmpty: _ordeDic[@"order_id"]]) {
-                     cell.subTitleName = _ordeDic[@"order_id"];
-                }
-                }
-                break;
-            case 3:{
                 cell.titleName = @"科室选择:";
                 if ([NSString isEmpty:_KSName]) {
                     cell.subTitleName = @"请选择科室";
                 }else{
                     cell.subTitleName = _KSName;
                 }
-                
-            }
+               
+                }
                 break;
+
             default:
                 break;
         }
@@ -217,35 +215,49 @@ static NSString *const FaBuSubTitleTableViewCell = @"FaBuSubTitleTableViewCell";
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     switch (indexPath.section) {
         case 0:{
-            UIAlertController *controller = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
-            UIAlertAction *action = [UIAlertAction actionWithTitle:@"询医问诊" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                //打开相机
-                [_ordeDic setObject:@1 forKey:@"demand_type"];
-                [_fabuXuqiuTableView reloadData];
-            }];
-            UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"市内坐诊" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                 [_ordeDic setObject:@2 forKey:@"demand_type"];
-                [_fabuXuqiuTableView reloadData];
-                
-            }];
-            UIAlertAction *action2 = [UIAlertAction actionWithTitle:@"活动讲座" style:UIAlertActionStyleDefault  handler:^(UIAlertAction * _Nonnull action) {
-                
-                 [_ordeDic setObject:@3 forKey:@"demand_type"];
-                [_fabuXuqiuTableView reloadData];
-            }];
-            UIAlertAction *action3 = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel  handler:^(UIAlertAction * _Nonnull action) {
-                //取消
-            }];
-            [controller addAction:action];
-            [controller addAction:action1];
-            [controller addAction:action2];
-            [controller addAction:action3];
-            [self.navigationController presentViewController:controller animated:YES completion:nil];
+            if (indexPath.row == 1) {
+                YMOrderViewController *vc = [[YMOrderViewController alloc]init];
+                vc.returnRoot = NO;
+                //判断是否为复诊
+                if ([_ordeDic[@"is_fuzhen"] isEqualToString:@"1"]) {
+                    vc.isFuzhen = YES;
+                }
+                vc.delegate = self;
+                [self.navigationController pushViewController:vc animated:YES];
+            }
         }
             break;
         case 1:{
             if (indexPath.row == 0) {
+                if ([_ordeDic[@"is_fuzhen"] isEqualToString:@"1"]) {
+                    
+                }else{
                 
+                    UIAlertController *controller = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+                    UIAlertAction *action = [UIAlertAction actionWithTitle:@"询医问诊" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                        //打开相机
+                        [_ordeDic setObject:@1 forKey:@"demand_type"];
+                        [_fabuXuqiuTableView reloadData];
+                    }];
+                    UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"市内坐诊" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                        [_ordeDic setObject:@2 forKey:@"demand_type"];
+                        [_fabuXuqiuTableView reloadData];
+                        
+                    }];
+                    UIAlertAction *action2 = [UIAlertAction actionWithTitle:@"活动讲座" style:UIAlertActionStyleDefault  handler:^(UIAlertAction * _Nonnull action) {
+                        
+                        [_ordeDic setObject:@3 forKey:@"demand_type"];
+                        [_fabuXuqiuTableView reloadData];
+                    }];
+                    UIAlertAction *action3 = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel  handler:^(UIAlertAction * _Nonnull action) {
+                        //取消
+                    }];
+                    [controller addAction:action];
+                    [controller addAction:action1];
+                    [controller addAction:action2];
+                    [controller addAction:action3];
+                    [self.navigationController presentViewController:controller animated:YES completion:nil];
+                }
             }else{
                 YMInfoBaseTableViewController *vc = [[YMInfoBaseTableViewController alloc]init];
                 vc.delegate = self;
@@ -254,23 +266,15 @@ static NSString *const FaBuSubTitleTableViewCell = @"FaBuSubTitleTableViewCell";
         }
             break;
         case 2:{
-            if (indexPath.row == 1) {
-                YMOrderViewController *vc = [[YMOrderViewController alloc]init];
-                vc.returnRoot = NO;
-                vc.delegate = self;
-                [self.navigationController pushViewController:vc animated:YES];
-            }
-         
-        }
-            break;
-        case 3:{
             YMDepartmentSelectionViewController *vc = [[YMDepartmentSelectionViewController alloc]init];
             vc.delegate = self;
             vc.hiddentopView = YES;
             
             [self.navigationController pushViewController:vc animated:YES];
+         
         }
             break;
+
         default:
             break;
     }
@@ -295,6 +299,7 @@ static NSString *const FaBuSubTitleTableViewCell = @"FaBuSubTitleTableViewCell";
     }
     if ([_ordeDic[@"demand_type"] integerValue] == 1) {
         YMNewContentViewController *vc = [[YMNewContentViewController alloc]init];
+        
         vc.orderDic = [_ordeDic mutableCopy];
         [self.navigationController pushViewController:vc animated:YES];
     }else{
@@ -309,12 +314,12 @@ static NSString *const FaBuSubTitleTableViewCell = @"FaBuSubTitleTableViewCell";
 #pragma mark - YMFaBuSwitchTableViewCellDelegate
 
 -(void)fabuSwitch:(YMFaBuSwitchTableViewCell *)cell setOn:(BOOL)On{
-    NSIndexPath *indexPath = [self.fabuXuqiuTableView indexPathForCell:cell];
-    if (indexPath.section ==1) {
-        [_ordeDic setObject:On?@"1":@"0" forKey:@"is_daifa"];
-    }else{
+//    NSIndexPath *indexPath = [self.fabuXuqiuTableView indexPathForCell:cell];
+//    if (indexPath.section ==1) {
+//        [_ordeDic setObject:On?@"1":@"0" forKey:@"is_daifa"];
+//    }else{
         [_ordeDic setObject:On?@"1":@"0" forKey:@"is_fuzhen"];
-    }
+//    }
     
     [_fabuXuqiuTableView reloadData];
     
@@ -347,8 +352,29 @@ static NSString *const FaBuSubTitleTableViewCell = @"FaBuSubTitleTableViewCell";
 }
 
 #pragma mark - YMOrderViewControllerDelegate
--(void)orderView:(YMOrderViewController *)orderView demand_sn:(NSString *)demand_sn{
-    [_ordeDic setObject:[NSString isEmpty:demand_sn]?@"":demand_sn forKey:@"order_id"];
+-(void)orderView:(YMOrderViewController *)orderView andNSDict:(NSDictionary *)dict{
+    self.fuzhenDict = dict;
+    [_ordeDic setObject:@1 forKey:@"demand_type"];
+    //科室
+     _KSName = [dict objectForKey:@"small_kss"];
+    //用户
+     _userName = [dict objectForKey:@"leaguer_name"];
+    //复诊的订单
+    [_ordeDic setObject:[dict objectForKey:@"fuzhen"] forKey:@"fuzhen"];
+    
+    [_ordeDic setObject:[dict objectForKey:@"title"] forKey:@"title"];
+    [_ordeDic setObject:[dict objectForKey:@"big_ks"] forKey:@"big_ks"];
+    [_ordeDic setObject:[dict objectForKey:@"small_ks"] forKey:@"small_ks"];
+    [_ordeDic setObject:[dict objectForKey:@"order_id"] forKey:@"order_id"];
+    [_ordeDic setObject:[dict objectForKey:@"demand_content"] forKey:@"demand_content"];
+    [_ordeDic setObject:[dict objectForKey:@"hospital_id"] forKey:@"hospital_id"];
+    [_ordeDic setObject:[dict objectForKey:@"hospital_name"] forKey:@"hospital_name"];
+    [_ordeDic setObject:[dict objectForKey:@"aptitude"] forKey:@"aptitude"];
+    [_ordeDic setObject:[dict objectForKey:@"aptitudes"] forKey:@"aptitudes"];
+    [_ordeDic setObject:[dict objectForKey:@"money"] forKey:@"money"];
+    [_ordeDic setObject:[YMUserInfo sharedYMUserInfo].member_id forKey:@"member_id"];
+    [_ordeDic setObject:[dict objectForKey:@"leaguer_id"] forKey:@"leaguer_id"];
+    
     [_fabuXuqiuTableView reloadData];
 }
 
